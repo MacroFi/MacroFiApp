@@ -1,0 +1,8 @@
+{
+  "name": "MacroFi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "06b00e57"
+}
