@@ -5,11 +5,13 @@ import './Tab2.css';
 const Tab2: React.FC = () => {
   return (
     <IonPage>
+      
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Home</IonTitle>
+          <IonTitle class="ion-text-center">MacroFi</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -18,6 +20,7 @@ const Tab2: React.FC = () => {
         </IonHeader>
         <ExploreContainer name="Tab 2 page" />
       </IonContent>
+
     </IonPage>
   );
 };
