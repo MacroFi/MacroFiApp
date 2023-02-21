@@ -94,6 +94,16 @@ const Tab1: React.FC = () => {
           <IonCheckbox slot="end"></IonCheckbox>
         </IonItem>
 
+        <IonItem lines="inset">
+          <IonLabel>Indian</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>Thai</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
 
       </IonContent>
 
