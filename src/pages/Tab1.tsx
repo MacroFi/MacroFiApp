@@ -17,7 +17,7 @@ import {
 } from '@ionic/react';
 
 import './Tab1.css';
-import { star, fastFoodOutline } from 'ionicons/icons';
+import { star, fastFoodOutline, alertOutline, alertCircleOutline } from 'ionicons/icons';
 
 const Tab1: React.FC = () => {
   return (
@@ -72,11 +72,25 @@ const Tab1: React.FC = () => {
             </IonCol>
           </IonRow>
 
+          <IonRow>
+            <IonCol>
+              <IonItem fill="outline">
+                <IonLabel>Goal</IonLabel>
+                <IonSelect placeholder="Make a Selection">
+                  <IonSelectOption value="loose">Loose Weight</IonSelectOption>
+                  <IonSelectOption value="gain">Gain Weight</IonSelectOption>
+                  <IonSelectOption value="bulk">Bulk</IonSelectOption>
+                  <IonSelectOption value="lean">Lean</IonSelectOption>
+                </IonSelect>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
         </IonGrid>
 
         <IonItem lines="full">
           <IonIcon icon={fastFoodOutline} slot="start"></IonIcon>
-          <IonLabel>Food Categories</IonLabel>
+          <IonLabel>Food Prefrences</IonLabel>
         </IonItem>
 
         <IonItem lines="inset">
@@ -105,6 +119,51 @@ const Tab1: React.FC = () => {
         </IonItem>
 
 
+        
+        <IonItem lines="full">
+          <IonIcon icon={alertCircleOutline} slot="start"></IonIcon>
+          <IonLabel>Dietary Restrictions</IonLabel>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>Vegetarian</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>Vegan</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>Keto</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>NO Wheat (Gluten)</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>NO Nuts</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>NO Fish and Shellfish</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>NO Eggs</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
+
+        <IonItem lines="inset">
+          <IonLabel>NO Soy</IonLabel>
+          <IonCheckbox slot="end"></IonCheckbox>
+        </IonItem>
       </IonContent>
 
     </IonPage>
