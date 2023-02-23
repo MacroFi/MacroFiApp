@@ -15,7 +15,7 @@ import {
   IonCheckbox,
   IonButton,
   IonIcon
-} from '@ionic/react';import ExploreContainer from '../components/ExploreContainer';
+} from '@ionic/react';
 import './css/Tab3.css';
 
 const Tab3: React.FC = () => {
@@ -29,12 +29,6 @@ const Tab3: React.FC = () => {
       </IonHeader>
       
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 3</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 3 page" />
       </IonContent>
 
     </IonPage>
