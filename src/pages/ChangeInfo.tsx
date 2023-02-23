@@ -1,72 +1,33 @@
-import { useState, useRef } from 'react';
-
 import {
-  setupIonicReact,
   IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
-  IonRow,
-  IonCol,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonGrid,
-  IonSelect,
-  IonSelectOption,
-  IonCheckbox,
   IonButton,
-  IonIcon,
-  IonNavLink,
-  IonNav
+  IonButtons,
+  IonBackButton,
 } from '@ionic/react';
 
-import './css/Tab1.css';
-import ChangeInfo from './ChangeInfo';
-import { IonReactRouter } from '@ionic/react-router';
-import { star, fastFoodOutline, alertOutline, alertCircleOutline } from 'ionicons/icons';
+import './ChangeInfo.css';
 
-
-
-const Tab1: React.FC = () => {
-  /*
-  function getData(val)
-  {
-    return val
-  };
-  */
-  /*
-          <Route exact path="/tab1">
-            <Tab1 />
-          </Route>
-  */
- /*
-  const [inputModel, setInputModel ] = useState('');
-  const ionInputEl = useRef<HTMLIonInputElement>(null);
-*/
+const ChangeInfo: React.FC = () => {
   return (
     <IonPage>
 
       <IonHeader>
         <IonToolbar>
-          <IonTitle class="ion-text-center">MacroFi</IonTitle>
+          <IonTitle>Page ChangeInfo</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/"></IonBackButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
 
-{/* This stuff doesn't work as intended yet
-       <IonItem routerLink="/ChangeInfo">
-        <IonLabel>User 1</IonLabel>
-       </IonItem>
 
-        
-
-         <IonNavLink routerDirection="forward" component={() => <ChangeInfo />}>
-          <IonButton>Go to Page Two</IonButton>
-        </IonNavLink>
-  */}
+        {/*
         <IonGrid class="ion-padding-vertical">
 
           <IonRow>
@@ -204,10 +165,11 @@ const Tab1: React.FC = () => {
 
         <IonButton expand="full">Submit</IonButton>
 
+  */}
       </IonContent>
 
     </IonPage>
   );
 };
 
-export default Tab1;
+export default ChangeInfo;

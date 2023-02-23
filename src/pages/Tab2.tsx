@@ -1,6 +1,22 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Tab2.css';
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonRow,
+  IonCol,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonGrid,
+  IonSelect,
+  IonSelectOption,
+  IonCheckbox,
+  IonButton,
+  IonIcon
+} from '@ionic/react';import ExploreContainer from '../components/ExploreContainer';
+import './css/Tab2.css';
 
 const Tab2: React.FC = () => {
   return (
@@ -20,11 +36,14 @@ const Tab2: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonButton expand="full">Submit</IonButton>
-
         
+
       </IonContent>
 
+      <IonItem lines="full">
+          <IonLabel>Food Prefrences</IonLabel>
+      </IonItem>
+      
     </IonPage>
   );
 };
