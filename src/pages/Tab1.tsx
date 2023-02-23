@@ -17,7 +17,7 @@ import {
 } from '@ionic/react';
 
 import './Tab1.css';
-import { star, fastFoodOutline } from 'ionicons/icons';
+import { fastFoodOutline } from 'ionicons/icons';
 
 const Tab1: React.FC = () => {
   return (
