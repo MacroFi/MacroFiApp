@@ -13,6 +13,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonCheckbox,
+  IonButton,
   IonIcon
 } from '@ionic/react';
 
@@ -164,6 +165,8 @@ const Tab1: React.FC = () => {
           <IonLabel>NO Soy</IonLabel>
           <IonCheckbox slot="end"></IonCheckbox>
         </IonItem>
+
+        <IonButton expand="full">Submit</IonButton>
       </IonContent>
 
     </IonPage>
