@@ -19,9 +19,14 @@ const Tab2: React.FC = () => {
   const [restaurants, setRestaurants] = useState<JSX.Element[]>([]);
 
   const getSearch = async () => {
-    // const searchKey = searchRef.current?.value;
-    // console.log(searchKey);
-    const url = "http://127.0.0.1:5000/v1/user/1234/nearby";
+    const searchKey = searchRef.current!.value!;
+
+    const url = new URL("http://127.0.0.1:5000/v1/user/1234/nearby");
+
+    if (searchKey.length !== 0) {
+      url.searchParams.append("term", searchKey);
+    }
+
     const response = await fetch(url);
     const nearby = await response.json();
 
@@ -55,7 +60,7 @@ const Tab2: React.FC = () => {
 
       <IonHeader>
         <IonToolbar>
-          <IonTitle class="ion-text-center">MacroFi</IonTitle>
+          <IonTitle>MacroFi</IonTitle>
         </IonToolbar>
       </IonHeader>
 

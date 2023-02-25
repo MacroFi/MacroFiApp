@@ -48,5 +48,8 @@ ion-card-title{
     font-size: 130%;
 }
 
-
+ion-title{
+    padding-top: 16px;
+    text-align: center;
+}
 
