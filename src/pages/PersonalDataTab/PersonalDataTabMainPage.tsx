@@ -1,19 +1,19 @@
 import {
-  IonContent,
   IonHeader,
   IonPage,
   IonTitle,
   IonToolbar,
   IonItem,
-  IonLabel
+  IonLabel,
+  IonRow,
+  IonCol,
+  IonContent
 } from '@ionic/react';
 
 import '../css/Tab1.css';
 
 // Custom components 
-import InputControls from '../../components/InputControls';
-import FoodPrefrences from '../../components/FoodPrefrences';
-import DietaryRestrictions from '../../components/DietaryRestrictions';
+import PersonalDataInput from '../../components/PersonalDataInput';
 
 
 const PersonalDataMainPage: React.FC = () => {
@@ -28,24 +28,12 @@ const PersonalDataMainPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
+        {/* This is a custon component which collects ALL inputs from user*/}
+        <PersonalDataInput/>
 
-
-        {/* This is a custon component which contains height, weight, age, sex, and goal input */}
-        <InputControls />
-
-
-        {/* This is a custon component which contains all food prefrences */}
-        <FoodPrefrences />
-
-        {/* This is a custon component which contains all dietary Restrictions */}
-        <DietaryRestrictions />
-
-
-      
         <IonItem routerLink="/PeronalDataTab/PageTwo" routerDirection="forward">
           <IonLabel>Test</IonLabel>
         </IonItem>
-
       </IonContent>
 
     </IonPage>
