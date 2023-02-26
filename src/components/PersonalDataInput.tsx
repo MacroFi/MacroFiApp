@@ -11,9 +11,10 @@ import {
   IonButton,
   IonIcon,
   IonCheckbox,
+  useIonToast
 } from "@ionic/react"
 
-import { fastFoodOutline, alertCircleOutline } from 'ionicons/icons';
+import { fastFoodOutline, alertCircleOutline, checkmarkOutline} from 'ionicons/icons';
 
 
 const PersonalDataInput: React.FC = () => {
@@ -63,7 +64,7 @@ const PersonalDataInput: React.FC = () => {
   const foodPreferencesRef = useRef<HTMLIonSelectElement>(null);
   const dietRestrictionsRef = useRef<HTMLIonSelectElement>(null);
 
-
+  const [present] = useIonToast();
 
   const collectData = () => {
 
@@ -80,6 +81,15 @@ const PersonalDataInput: React.FC = () => {
     setPersonalData(data);
     console.log(data);
     // TODO: Send data to backend
+  
+
+    present({
+      message: "Updated Successful",
+      duration: 1500,
+      position: "top",
+      icon: checkmarkOutline
+    });
+
   }
 
 
