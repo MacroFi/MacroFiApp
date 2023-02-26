@@ -7,13 +7,12 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  setupIonicReact,
 } from '@ionic/react';
+
 import { IonReactRouter } from '@ionic/react-router';
 import { homeOutline, clipboardOutline, pieChartOutline } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,43 +33,52 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+/* Nav Components */
+import HomeTabMainPage from './pages/HomeTab/HomeTabMainPage';
+import PersonalDataMainPage from './pages/PersonalDataTab/PersonalDataTabMainPage';
+import ViewDataMainPage from './pages/ViewDataTab/ViewDataTabMainPage';
+import PageTwo from './pages/PersonalDataTab/PageTwo';
+
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
-        
+
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/PeronalDataTab">
+            <PersonalDataMainPage/>
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route path="/PeronalDataTab/PageTwo">
+            <PageTwo/>
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route exact path="/HomeTab">
+            <HomeTabMainPage/>
+          </Route>
+          <Route path="/ViewDataTab">
+            <ViewDataMainPage/>
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab2" />
+            <Redirect to="/HomeTab" />
           </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="PeronalDataTab" href="/PeronalDataTab">
             <IonIcon icon={clipboardOutline} />
             <IonLabel>Personal Data</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="HomeTab" href="/HomeTab">
             <IonIcon icon={homeOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="ViewDataTab" href="/ViewDataTab">
             <IonIcon icon={pieChartOutline} />
             <IonLabel>View Data</IonLabel>
           </IonTabButton>
         </IonTabBar>
-        
+
       </IonTabs>
     </IonReactRouter>
   </IonApp>

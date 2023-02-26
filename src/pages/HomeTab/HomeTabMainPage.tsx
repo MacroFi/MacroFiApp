@@ -11,10 +11,11 @@ import {
   IonGrid,
 } from '@ionic/react';
 import { useRef, useState } from 'react';
-import './css/Tab2.css';
-import RestaurantCard from '../components/RestaurantCard';
 
-const Tab2: React.FC = () => {
+import RestaurantCard from '../../components/RestaurantCard';
+import '../css/Tab2.css';
+
+const HomeTabMainPage: React.FC = () => {
   const searchRef = useRef<HTMLIonSearchbarElement>(null);
   const [restaurants, setRestaurants] = useState<JSX.Element[]>([]);
 
@@ -87,4 +88,4 @@ const Tab2: React.FC = () => {
 };
 
 
-export default Tab2;
+export default HomeTabMainPage;
