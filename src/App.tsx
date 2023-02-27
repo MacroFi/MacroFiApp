@@ -38,6 +38,7 @@ import HomeTabMainPage from './pages/HomeTab/HomeTabMainPage';
 import PersonalDataMainPage from './pages/PersonalDataTab/PersonalDataTabMainPage';
 import ViewDataMainPage from './pages/ViewDataTab/ViewDataTabMainPage';
 import PageTwo from './pages/PersonalDataTab/PageTwo';
+import ViewData from './pages/PersonalDataTab/ViewData';
 
 setupIonicReact();
 
@@ -59,9 +60,13 @@ const App: React.FC = () => (
           <Route path="/ViewDataTab">
             <ViewDataMainPage/>
           </Route>
+          <Route path="/PeronalDataTab/ViewData">
+            <ViewData/>
+          </Route>
           <Route exact path="/">
             <Redirect to="/HomeTab" />
           </Route>
+          
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">

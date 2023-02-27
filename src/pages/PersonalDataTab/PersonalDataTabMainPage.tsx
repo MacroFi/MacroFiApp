@@ -7,7 +7,8 @@ import {
   IonLabel,
   IonRow,
   IonCol,
-  IonContent
+  IonContent,
+  IonGrid
 } from '@ionic/react';
 
 import '../css/Tab1.css';
@@ -29,12 +30,38 @@ const PersonalDataMainPage: React.FC = () => {
 
       <IonContent>
         {/* This is a custon component which collects ALL inputs from user*/}
-        <PersonalDataInput/>
+        <IonGrid class="ion-padding-vertical">
+          <IonRow>
+            <IonCol>
+              <IonItem>
 
-        <IonItem routerLink="/PeronalDataTab/PageTwo" routerDirection="forward">
-          <IonLabel>Test</IonLabel>
-        </IonItem>
+                <IonItem routerLink="/PeronalDataTab/PageTwo" routerDirection="forward">
+                  <IonLabel>Edit your Personal Data</IonLabel>
+                </IonItem>
+
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonItem>
+
+                <IonItem routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
+                  <IonLabel>View your Nutritional Data</IonLabel>
+                </IonItem>
+
+                </IonItem>
+            </IonCol>
+          </IonRow>
+
+
+        </IonGrid>
+
+
       </IonContent>
+
+      
 
     </IonPage>
   );
