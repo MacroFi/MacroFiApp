@@ -9,6 +9,8 @@ import {
   IonSearchbar,
   IonButton,
   IonGrid,
+  IonItem,
+  IonLabel,
 } from '@ionic/react';
 import { useRef, useState } from 'react';
 
@@ -69,6 +71,14 @@ const HomeTabMainPage: React.FC = () => {
       <IonContent fullscreen>
 
         <IonGrid>
+        <IonRow>
+            <IonCol class="ion-text-center">
+              <IonItem routerLink="/HomeTab/MealEntry" routerDirection="forward">
+                  <IonLabel class="ion-text-center">Log A Meal</IonLabel>
+              </IonItem>
+            </IonCol>
+          </IonRow>
+
           <IonRow>
             <IonCol size="12">
               <IonSearchbar ref={searchRef} showClearButton="focus" inputmode="text"></IonSearchbar>

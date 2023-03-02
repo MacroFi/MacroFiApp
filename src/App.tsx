@@ -39,6 +39,7 @@ import PersonalDataMainPage from './pages/PersonalDataTab/PersonalDataTabMainPag
 import ViewDataMainPage from './pages/ViewDataTab/ViewDataTabMainPage';
 import PageTwo from './pages/PersonalDataTab/PageTwo';
 import ViewData from './pages/PersonalDataTab/ViewData';
+import MealEntry from './pages/HomeTab/MealEntry';
 
 setupIonicReact();
 
@@ -65,6 +66,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/">
             <Redirect to="/HomeTab" />
+          </Route>
+          <Route path="/HomeTab/MealEntry">
+            <MealEntry/>
           </Route>
           
         </IonRouterOutlet>
