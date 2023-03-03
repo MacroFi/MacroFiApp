@@ -37,58 +37,64 @@ import './theme/variables.css';
 import HomeTabMainPage from './pages/HomeTab/HomeTabMainPage';
 import PersonalDataMainPage from './pages/PersonalDataTab/PersonalDataTabMainPage';
 import ViewDataMainPage from './pages/ViewDataTab/ViewDataTabMainPage';
-import PageTwo from './pages/PersonalDataTab/PageTwo';
+import EditPersonalDataPage from './pages/PersonalDataTab/EditPersonalDataPage';
 import ViewData from './pages/PersonalDataTab/ViewData';
-import MealEntry from './pages/HomeTab/MealEntry';
+import MealEntryPage from './pages/HomeTab/MealEntryPage';
+import LoginPage from './pages/LoginPage';
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
+      
+      <IonRouterOutlet>
+        <Route path="/test">
+          <LoginPage/>
+        </Route>
+      </IonRouterOutlet>
+        
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route exact path="/PeronalDataTab">
+              <PersonalDataMainPage />
+            </Route>
+            <Route path="/PeronalDataTab/EditPersonalDataPage">
+              <EditPersonalDataPage />
+            </Route>
+            <Route exact path="/HomeTab">
+              <HomeTabMainPage />
+            </Route>
+            <Route path="/ViewDataTab">
+              <ViewDataMainPage />
+            </Route>
+            <Route path="/PeronalDataTab/ViewData">
+              <ViewData />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/PeronalDataTab" />
+            </Route>
+            <Route path="/HomeTab/MealEntry">
+              <MealEntryPage />
+            </Route>
+          </IonRouterOutlet>
 
-        <IonRouterOutlet>
-          <Route exact path="/PeronalDataTab">
-            <PersonalDataMainPage/>
-          </Route>
-          <Route path="/PeronalDataTab/PageTwo">
-            <PageTwo/>
-          </Route>
-          <Route exact path="/HomeTab">
-            <HomeTabMainPage/>
-          </Route>
-          <Route path="/ViewDataTab">
-            <ViewDataMainPage/>
-          </Route>
-          <Route path="/PeronalDataTab/ViewData">
-            <ViewData/>
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/HomeTab" />
-          </Route>
-          <Route path="/HomeTab/MealEntry">
-            <MealEntry/>
-          </Route>
-          
-        </IonRouterOutlet>
-
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="PeronalDataTab" href="/PeronalDataTab">
-            <IonIcon icon={clipboardOutline} />
-            <IonLabel>Personal Data</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="HomeTab" href="/HomeTab">
-            <IonIcon icon={homeOutline} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="ViewDataTab" href="/ViewDataTab">
-            <IonIcon icon={pieChartOutline} />
-            <IonLabel>View Data</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-
-      </IonTabs>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="PeronalDataTab" href="/PeronalDataTab">
+              <IonIcon icon={clipboardOutline} />
+              <IonLabel>Personal Data</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="HomeTab" href="/HomeTab">
+              <IonIcon icon={homeOutline} />
+              <IonLabel>Home</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="ViewDataTab" href="/ViewDataTab">
+              <IonIcon icon={pieChartOutline} />
+              <IonLabel>View Data</IonLabel>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      
     </IonReactRouter>
   </IonApp>
 );

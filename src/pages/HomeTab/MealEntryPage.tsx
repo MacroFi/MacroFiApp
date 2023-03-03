@@ -3,17 +3,14 @@ import {
     IonHeader,
     IonContent,
     IonToolbar,
-    IonTitle,
     IonButtons,
     IonBackButton,
-    IonItem,
-    IonLabel,
     IonPage
   
   } from '@ionic/react';
 import MealEnter from '../../components/MealEnter';
 
-const MealEntry: React.FC = () => {
+const MealEntryPage: React.FC = () => {
     return(
         <IonPage>
             <IonHeader>
@@ -31,4 +28,4 @@ const MealEntry: React.FC = () => {
     );
 };
 
-export default MealEntry;
+export default MealEntryPage;

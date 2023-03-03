@@ -1,17 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
-    IonRow,
-    IonCol,
     IonItem,
-    IonLabel,
     IonInput,
     IonGrid,
-    IonSelect,
-    IonSelectOption,
     IonButton,
     IonIcon,
-    IonCheckbox,
-    useIonToast,
     IonList,
   } from "@ionic/react"
 import {closeCircle} from 'ionicons/icons';
@@ -31,7 +24,7 @@ const MealEnter: React.FC = () => {
 
     const handleFormChange = (index: number, event: React.FormEvent<HTMLIonInputElement>) => {
         let data = [...inputFields];
-        {/*data[index][event.target.name] = event.target.value; */}
+        // data[index][event.target.name] = event.target.value;
         setInputFields(data);
     }
     

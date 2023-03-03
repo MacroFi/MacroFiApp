@@ -6,8 +6,6 @@ import {
   IonTitle,
   IonButtons,
   IonBackButton,
-  IonItem,
-  IonLabel,
   IonPage
 
 } from '@ionic/react';
@@ -16,7 +14,7 @@ import '../css/changedata.css';
 import PersonalDataInput from '../../components/PersonalDataInput';
 
 
-const PageTwo: React.FC = () => {
+const EditPersonalDataPage: React.FC = () => {
 
   return (
     <IonPage>
@@ -31,9 +29,7 @@ const PageTwo: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        {/* This is a custon component which collects ALL inputs from user*/}
         <PersonalDataInput/>
-
       </IonContent>
 
     </IonPage>
@@ -60,4 +56,4 @@ const PageTwo: React.FC = () => {
 };
 */
 
-export default PageTwo;
+export default EditPersonalDataPage;

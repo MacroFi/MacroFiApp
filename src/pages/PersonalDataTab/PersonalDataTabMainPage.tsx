@@ -13,8 +13,7 @@ import {
 
 import '../css/Tab1.css';
 
-// Custom components 
-import PersonalDataInput from '../../components/PersonalDataInput';
+
 
 
 const PersonalDataMainPage: React.FC = () => {
@@ -29,39 +28,23 @@ const PersonalDataMainPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        {/* This is a custon component which collects ALL inputs from user*/}
         <IonGrid class="ion-padding-vertical">
           <IonRow>
             <IonCol>
-              <IonItem>
-
-                <IonItem routerLink="/PeronalDataTab/PageTwo" routerDirection="forward">
-                  <IonLabel>Edit your Personal Data</IonLabel>
-                </IonItem>
-
+              <IonItem routerLink="/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
+                <IonLabel>Edit your Personal Data</IonLabel>
               </IonItem>
             </IonCol>
           </IonRow>
-
           <IonRow>
             <IonCol>
-              <IonItem>
-
-                <IonItem routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
-                  <IonLabel>View your Nutritional Data</IonLabel>
-                </IonItem>
-
-                </IonItem>
+              <IonItem routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
+                <IonLabel>View your Nutritional Data</IonLabel>
+              </IonItem>
             </IonCol>
           </IonRow>
-
-
         </IonGrid>
-
-
       </IonContent>
-
-      
 
     </IonPage>
   );
