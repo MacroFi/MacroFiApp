@@ -38,7 +38,7 @@ import HomeTabMainPage from './pages/HomeTab/HomeTabMainPage';
 import PersonalDataMainPage from './pages/PersonalDataTab/PersonalDataTabMainPage';
 import ViewDataMainPage from './pages/ViewDataTab/ViewDataTabMainPage';
 import EditPersonalDataPage from './pages/PersonalDataTab/EditPersonalDataPage';
-import ViewData from './pages/PersonalDataTab/ViewData';
+import NutritionalDataPage from './pages/PersonalDataTab/NutritionalDataPage';
 import MealEntryPage from './pages/HomeTab/MealEntryPage';
 import LoginPage from './pages/LoginPage';
 
@@ -69,7 +69,7 @@ const App: React.FC = () => (
               <ViewDataMainPage />
             </Route>
             <Route path="/PeronalDataTab/ViewData">
-              <ViewData />
+              <NutritionalDataPage />
             </Route>
             <Route exact path="/">
               <Redirect to="/PeronalDataTab" />

@@ -28,22 +28,12 @@ const PersonalDataMainPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonGrid class="ion-padding-vertical">
-          <IonRow>
-            <IonCol>
-              <IonItem routerLink="/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
-                <IonLabel>Edit your Personal Data</IonLabel>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonItem routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
-                <IonLabel>View your Nutritional Data</IonLabel>
-              </IonItem>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+        <IonItem button={true} detail={true} routerLink="/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
+          <IonLabel>Personal Data</IonLabel>
+        </IonItem>
+        <IonItem button={true} detail={true} routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
+          <IonLabel>Nutritional Data</IonLabel>
+        </IonItem>
       </IonContent>
 
     </IonPage>

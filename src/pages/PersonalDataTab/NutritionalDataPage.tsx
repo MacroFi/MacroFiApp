@@ -16,7 +16,7 @@ import '../css/Tab1.css';
 //import PersonalDataInput from '../../components/PersonalDataInput';
 
 
-const ViewData: React.FC = () => {
+const NutritionalDataPage: React.FC = () => {
 
   return (
     <IonPage>
@@ -24,10 +24,10 @@ const ViewData: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton text="back"></IonBackButton>
+            <IonBackButton text=""></IonBackButton>
           </IonButtons>
 
-          <IonTitle class="ion-text-center">Personal Data</IonTitle>
+          <IonTitle class="ion-text-center">Nutritional Data</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -40,4 +40,4 @@ const ViewData: React.FC = () => {
   );
 };
 
-export default ViewData;
+export default NutritionalDataPage;
