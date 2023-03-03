@@ -12,9 +12,6 @@ import {
 
 import '../css/Tab1.css';
 
-// Custom components 
-//import PersonalDataInput from '../../components/PersonalDataInput';
-
 
 const NutritionalDataPage: React.FC = () => {
 
@@ -32,8 +29,6 @@ const NutritionalDataPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        {/* This is a custon component which collects ALL inputs from user*/}
-
       </IonContent>
 
     </IonPage>

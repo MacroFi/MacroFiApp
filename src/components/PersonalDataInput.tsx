@@ -14,7 +14,7 @@ import {
   useIonToast
 } from "@ionic/react"
 
-import { fastFoodOutline, alertCircleOutline, checkmarkOutline} from 'ionicons/icons';
+import { fastFoodOutline, alertCircleOutline, checkmarkOutline, alertOutline } from 'ionicons/icons';
 
 
 const PersonalDataInput: React.FC = () => {
@@ -37,24 +37,35 @@ const PersonalDataInput: React.FC = () => {
   };
 
   interface PersonalData {
+    uuid: number;
     height: string | number | null | undefined;
     weight: string | number | null | undefined;
     age: string | number | null | undefined;
     sex: string | number | null | undefined;
-    goal: string;
+    goal: string | null;
     food_preferences: Array<string>;
-    diet_restrictions: Array<string>;
+    dietary_restrictions: Array<string>;
   }
 
-  const [personalData, setPersonalData] = useState<PersonalData>({
-    height: "",
-    weight: "",
-    age: "",
-    sex: "",
-    goal: "",
-    food_preferences: [],
-    diet_restrictions: [],
-  });
+  
+  const getLocalData = () => {
+    const local = window.localStorage.getItem("data")
+    if (local == null) {
+      return null
+    }
+    return JSON.parse(local)
+    
+  }
+  const [personalData, setPersonalData] = useState<PersonalData>(getLocalData() || {
+      uuid: 1234,
+      height: null,
+      weight: null,
+      age: null,
+      sex: null,
+      goal: null,
+      food_preferences: [],
+      dietary_restrictions: [],
+    });
 
   const heightRef = useRef<HTMLIonInputElement>(null);
   const weightRef = useRef<HTMLIonInputElement>(null);
@@ -66,30 +77,53 @@ const PersonalDataInput: React.FC = () => {
 
   const [present] = useIonToast();
 
-  const collectData = () => {
+  const collectData = async () => {
 
     const data = {
+      uuid: 1234,
       height: heightRef.current?.value,
       weight: weightRef.current?.value,
       age: ageRef.current?.value,
       sex: sexRef.current?.value,
       goal: goalRef.current?.value,
       food_preferences: foodPreferencesRef.current?.value,
-      diet_restrictions: dietRestrictionsRef.current?.value
+      dietary_restrictions: dietRestrictionsRef.current?.value
     };
 
     setPersonalData(data);
-    console.log(data);
-    // TODO: Send data to backend
-  
 
-    present({
-      message: "Updated Successful",
-      duration: 1500,
-      position: "top",
-      icon: checkmarkOutline
+    console.log("DATA", data);
+    const url = new URL(`http://127.0.0.1:5000/v1/user/${data.uuid}`);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(data)
     });
 
+
+
+    if (response.status == 200) {
+      console.log("UPDATED PERSONAL DATA SUCCESSFULLY");
+      present({
+        message: "Updated Successful",
+        duration: 1500,
+        position: "top",
+        icon: checkmarkOutline
+      });
+    }
+    else if (response.status == 400) {
+      console.log("FAILED TO UPDATE PERSONAL DATA");
+      present({
+        message: "ERROR 400: UPDATE FAILED",
+        duration: 1500,
+        position: "top",
+        icon: alertOutline
+      });
+    }
+
+    window.localStorage.setItem('data', JSON.stringify(data));
   }
 
 
@@ -141,8 +175,8 @@ const PersonalDataInput: React.FC = () => {
             <IonItem>
               <IonLabel>Goal</IonLabel>
               <IonSelect placeholder="Make a Selection" interface="popover" interfaceOptions={goalPopoverOptions} ref={goalRef} value={personalData.goal}>
-                <IonSelectOption value="loose">Loose Weight</IonSelectOption>
-                <IonSelectOption value="gain">Gain Weight</IonSelectOption>
+                <IonSelectOption value="lose_weight">Lose Weight</IonSelectOption>
+                <IonSelectOption value="gain_weight">Gain Weight</IonSelectOption>
                 <IonSelectOption value="bulk">Bulk</IonSelectOption>
                 <IonSelectOption value="lean">Lean</IonSelectOption>
               </IonSelect>
@@ -175,15 +209,15 @@ const PersonalDataInput: React.FC = () => {
         </IonItem>
 
         <IonItem>
-          <IonSelect placeholder="Select dietary restrictions" multiple={true} interfaceOptions={dietRestrAlertOptions} ref={dietRestrictionsRef} value={personalData.diet_restrictions}>
+          <IonSelect placeholder="Select dietary restrictions" multiple={true} interfaceOptions={dietRestrAlertOptions} ref={dietRestrictionsRef} value={personalData.dietary_restrictions}>
             <IonSelectOption value="vegetarian">Vegetarian</IonSelectOption>
             <IonSelectOption value="vegan">Vegan</IonSelectOption>
             <IonSelectOption value="keto">Keto</IonSelectOption>
-            <IonSelectOption value="no-wheat">NO Wheat (Gluten)</IonSelectOption>
-            <IonSelectOption value="no-nuts">NO Nuts</IonSelectOption>
-            <IonSelectOption value="no-fish-and-shellfish">NO Fish and Shellfish</IonSelectOption>
-            <IonSelectOption value="no-eggs">NO Eggs</IonSelectOption>
-            <IonSelectOption value="no-soy">NO Soy</IonSelectOption>
+            <IonSelectOption value="no_gluten">NO Gluten</IonSelectOption>
+            <IonSelectOption value="no_nuts">NO Nuts</IonSelectOption>
+            <IonSelectOption value="no_fish_and_shellfish">NO Fish or Shellfish</IonSelectOption>
+            <IonSelectOption value="no_eggs">NO Eggs</IonSelectOption>
+            <IonSelectOption value="no_soy">NO Soy</IonSelectOption>
           </IonSelect>
         </IonItem>
       </IonGrid>
@@ -196,11 +230,12 @@ const PersonalDataInput: React.FC = () => {
             </IonButton>
           </IonCol>
         </IonRow>
-      </IonGrid>
 
-      <p>
-        {JSON.stringify(personalData)}
-      </p>
+        <p>
+          {JSON.stringify(personalData)}
+        </p>
+
+      </IonGrid>
     </React.Fragment>
 
   );

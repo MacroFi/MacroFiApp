@@ -44,16 +44,18 @@ import LoginPage from './pages/LoginPage';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      
-      <IonRouterOutlet>
-        <Route path="/test">
-          <LoginPage/>
-        </Route>
-      </IonRouterOutlet>
-        
+const App: React.FC = () => {
+  window.localStorage.clear();
+  return (
+    <IonApp>
+      <IonReactRouter>
+
+        <IonRouterOutlet>
+          <Route path="/test">
+            <LoginPage />
+          </Route>
+        </IonRouterOutlet>
+
         <IonTabs>
           <IonRouterOutlet>
             <Route exact path="/PeronalDataTab">
@@ -94,9 +96,10 @@ const App: React.FC = () => (
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
-      
-    </IonReactRouter>
-  </IonApp>
-);
+
+      </IonReactRouter>
+    </IonApp>
+  );
+};
 
 export default App;
