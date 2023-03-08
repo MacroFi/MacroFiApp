@@ -50,4 +50,7 @@ ion-button {
     --padding-top: 18px;
     --icon-font-size: 20px;
   }
-  
+
+  .item{
+    margin:5px auto;
+  }
