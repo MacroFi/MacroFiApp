@@ -5,10 +5,8 @@ import {
   IonToolbar,
   IonItem,
   IonLabel,
-  IonRow,
-  IonCol,
   IonContent,
-  IonGrid
+
 } from '@ionic/react';
 
 import '../css/Tab1.css';

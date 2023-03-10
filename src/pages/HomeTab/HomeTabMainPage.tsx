@@ -67,14 +67,12 @@ const HomeTabMainPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-
       <IonContent fullscreen>
-
         <IonGrid>
-        <IonRow>
+          <IonRow>
             <IonCol class="ion-text-center">
               <IonItem routerLink="/HomeTab/MealEntry" routerDirection="forward">
-                  <IonLabel class="ion-text-center">Log A Meal</IonLabel>
+                <IonLabel class="ion-text-center">Log A Meal</IonLabel>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -90,7 +88,6 @@ const HomeTabMainPage: React.FC = () => {
         </IonGrid>
 
         {restaurants}
-
       </IonContent>
 
     </IonPage>

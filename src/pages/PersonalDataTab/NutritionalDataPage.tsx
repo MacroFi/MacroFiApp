@@ -7,11 +7,7 @@ import {
   IonButtons,
   IonBackButton,
   IonItem,
-  IonLabel,
-  IonPage,
-  IonGrid,
-  IonRow,
-  IonCol
+  IonPage
 } from '@ionic/react';
 
 import '../css/Tab1.css';
@@ -72,10 +68,7 @@ const NutritionalDataPage: React.FC = () => {
 
           <IonHeader> <IonItem>Current Reccomended Daily Macronutrient Intake</IonItem> </IonHeader>
           <IonItem>Daily Caloric Reccomendation: </IonItem>
-          
           <IonItem>Daily Calcium Reccomendation: </IonItem>
-
-
           <IonItem>Daily Caloric Reccomendation: </IonItem>
           <IonItem>Daily Caloric Reccomendation: </IonItem>
 

@@ -10,7 +10,6 @@ import {
   IonSelectOption,
   IonButton,
   IonIcon,
-  IonCheckbox,
   useIonToast
 } from "@ionic/react"
 
@@ -104,7 +103,7 @@ const PersonalDataInput: React.FC = () => {
 
 
 
-    if (response.status == 200) {
+    if (response.status === 200) {
       console.log("UPDATED PERSONAL DATA SUCCESSFULLY");
       present({
         message: "Updated Successful",
@@ -113,7 +112,7 @@ const PersonalDataInput: React.FC = () => {
         icon: checkmarkOutline
       });
     }
-    else if (response.status == 400) {
+    else if (response.status === 400) {
       console.log("FAILED TO UPDATE PERSONAL DATA");
       present({
         message: "ERROR 400: UPDATE FAILED",
