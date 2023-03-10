@@ -71,7 +71,7 @@ const HomeTabMainPage: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol class="ion-text-center">
-              <IonItem routerLink="/HomeTab/MealEntry" routerDirection="forward">
+              <IonItem routerLink="/app/HomeTab/MealEntry" routerDirection="forward">
                 <IonLabel class="ion-text-center">Log A Meal</IonLabel>
               </IonItem>
             </IonCol>

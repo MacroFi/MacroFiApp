@@ -26,10 +26,10 @@ const PersonalDataMainPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonItem button={true} detail={true} routerLink="/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
+        <IonItem button={true} detail={true} routerLink="/app/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
           <IonLabel>Personal Data</IonLabel>
         </IonItem>
-        <IonItem button={true} detail={true} routerLink="/PeronalDataTab/ViewData" routerDirection="forward">
+        <IonItem button={true} detail={true} routerLink="/app/PeronalDataTab/ViewData" routerDirection="forward">
           <IonLabel>Nutritional Data</IonLabel>
         </IonItem>
       </IonContent>
