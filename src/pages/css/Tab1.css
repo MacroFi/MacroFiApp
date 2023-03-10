@@ -1,56 +1,55 @@
-.Tab1{
-    color: rgb(255, 0, 0);
-    background-color: rgb(240, 4, 4);
+.Tab1 {
+  color: rgb(255, 0, 0);
+  background-color: rgb(240, 4, 4);
 }
 
-
 ion-button {
-    --background: #61876E;
-    --background-hover: #9ce0be;
-    --background-activated: #88f4be;
-    --background-focused: #88f4be;
-  
-    --color: blue;
-  
-    --border-radius: 0;
-    --border-color: #000;
-    --border-style: solid;
-    --border-width: 1px;
-  
-    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  
-    --ripple-color: deeppink;
-  
-    --padding-top: 10px;
-    --padding-bottom: 10px;
-  }
+  --background: #61876e;
+  --background-hover: #9ce0be;
+  --background-activated: #88f4be;
+  --background-focused: #88f4be;
 
-  ion-checkbox{
-    --background: #93e9be;
-    --background-hover: #a700e9;
-    --background-activated: #88f4be;
-    --background-focused: #88f4be;
-  
-    --color: rgb(255, 0, 0);
-  
-    --border-radius: 0;
-    --border-color: #000;
-    --border-style: solid;
-    --border-width: 1px;
-  
-    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  
-    --ripple-color: deeppink;
-  
-    --padding-top: 10px;
-    --padding-bottom: 10px;
-  }
+  --color: blue;
 
-  ion-back-button{
-    --padding-top: 18px;
-    --icon-font-size: 20px;
-  }
+  --border-radius: 0;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
 
-  .item{
-    margin:5px auto;
-  }
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+  --ripple-color: deeppink;
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+ion-checkbox {
+  --background: #93e9be;
+  --background-hover: #a700e9;
+  --background-activated: #88f4be;
+  --background-focused: #88f4be;
+
+  --color: rgb(255, 0, 0);
+
+  --border-radius: 0;
+  --border-color: #000;
+  --border-style: solid;
+  --border-width: 1px;
+
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+  --ripple-color: deeppink;
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+ion-back-button {
+  --padding-top: 18px;
+  --icon-font-size: 20px;
+}
+
+.item {
+  margin: 5px auto;
+}

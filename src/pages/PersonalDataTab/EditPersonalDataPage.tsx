@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   IonHeader,
   IonContent,
@@ -7,18 +7,14 @@ import {
   IonButtons,
   IonBackButton,
   IonPage
+} from "@ionic/react";
 
-} from '@ionic/react';
-
-import '../css/changedata.css';
-import PersonalDataInput from '../../components/PersonalDataInput';
-
+import "../css/changedata.css";
+import PersonalDataInput from "../../components/PersonalDataInput";
 
 const EditPersonalDataPage: React.FC = () => {
-
   return (
     <IonPage>
-
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -29,14 +25,13 @@ const EditPersonalDataPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <PersonalDataInput/>
+        <PersonalDataInput />
       </IonContent>
-
     </IonPage>
   );
 };
 
-  /*
+/*
   return (
     <IonPage>
       <IonHeader>

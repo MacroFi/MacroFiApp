@@ -19,7 +19,6 @@ import { personOutline, lockClosedOutline } from "ionicons/icons";
 const LoginPage: React.FC = () => {
   return (
     <IonPage>
-
       <IonHeader>
         <IonToolbar>
           <IonTitle class="ion-text-center">MacroFi</IonTitle>
@@ -75,7 +74,6 @@ const LoginPage: React.FC = () => {
           </IonRow>
         </IonGrid>
       </IonContent>
-
     </IonPage>
   );
 };

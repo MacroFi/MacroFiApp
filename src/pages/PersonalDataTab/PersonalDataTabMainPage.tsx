@@ -6,19 +6,13 @@ import {
   IonItem,
   IonLabel,
   IonContent,
+} from "@ionic/react";
 
-} from '@ionic/react';
-
-import '../css/Tab1.css';
-
-
-
+import "../css/Tab1.css";
 
 const PersonalDataMainPage: React.FC = () => {
-
   return (
     <IonPage>
-
       <IonHeader>
         <IonToolbar>
           <IonTitle class="ion-text-center">MacroFi</IonTitle>
@@ -26,14 +20,24 @@ const PersonalDataMainPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonItem button={true} detail={true} routerLink="/app/PeronalDataTab/EditPersonalDataPage" routerDirection="forward">
+        <IonItem
+          button={true}
+          detail={true}
+          routerLink="/app/PeronalDataTab/EditPersonalDataPage"
+          routerDirection="forward"
+        >
           <IonLabel>Personal Data</IonLabel>
+          
         </IonItem>
-        <IonItem button={true} detail={true} routerLink="/app/PeronalDataTab/ViewData" routerDirection="forward">
+        <IonItem
+          button={true}
+          detail={true}
+          routerLink="/app/PeronalDataTab/ViewData"
+          routerDirection="forward"
+        >
           <IonLabel>Nutritional Data</IonLabel>
         </IonItem>
       </IonContent>
-
     </IonPage>
   );
 };

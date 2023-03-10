@@ -10,12 +10,13 @@ import {
   IonButton,
   IonGrid,
   IonItem,
-  IonLabel,
-} from '@ionic/react';
-import { useRef, useState } from 'react';
+  IonLabel
+} from "@ionic/react";
 
-import RestaurantCard from '../../components/RestaurantCard';
-import '../css/Tab2.css';
+import { useRef, useState } from "react";
+
+import RestaurantCard from "../../components/RestaurantCard";
+import "../css/Tab2.css";
 
 const HomeTabMainPage: React.FC = () => {
   const searchRef = useRef<HTMLIonSearchbarElement>(null);
@@ -36,31 +37,40 @@ const HomeTabMainPage: React.FC = () => {
     var elements = [];
     for (var i = 0; i < nearby.businesses.length; i += 2) {
       var first = nearby.businesses[i];
-      var second = (i + 1 < nearby.businesses.length) ? nearby.businesses[i + 1] : null
+      var second =
+        i + 1 < nearby.businesses.length ? nearby.businesses[i + 1] : null;
 
-      elements.push((
+      elements.push(
         <IonGrid fixed={true} key={i}>
           <IonRow>
             <IonCol>
-              <RestaurantCard img_url={first.image_url} name={first.name} rating={first.rating} address={first.address} />
+              <RestaurantCard
+                img_url={first.image_url}
+                name={first.name}
+                rating={first.rating}
+                address={first.address}
+              />
             </IonCol>
             <IonCol>
-              {second ?
-                <RestaurantCard img_url={second.image_url} name={second.name} rating={second.rating} address={second.address} />
-                : null}
+              {second ? (
+                <RestaurantCard
+                  img_url={second.image_url}
+                  name={second.name}
+                  rating={second.rating}
+                  address={second.address}
+                />
+              ) : null}
             </IonCol>
           </IonRow>
         </IonGrid>
-      ))
-    };
+      );
+    }
 
     setRestaurants(elements);
   };
 
-
   return (
     <IonPage>
-
       <IonHeader>
         <IonToolbar>
           <IonTitle>MacroFi</IonTitle>
@@ -71,7 +81,10 @@ const HomeTabMainPage: React.FC = () => {
         <IonGrid>
           <IonRow>
             <IonCol class="ion-text-center">
-              <IonItem routerLink="/app/HomeTab/MealEntry" routerDirection="forward">
+              <IonItem
+                routerLink="/app/HomeTab/MealEntry"
+                routerDirection="forward"
+              >
                 <IonLabel class="ion-text-center">Log A Meal</IonLabel>
               </IonItem>
             </IonCol>
@@ -79,20 +92,29 @@ const HomeTabMainPage: React.FC = () => {
 
           <IonRow>
             <IonCol size="12">
-              <IonSearchbar ref={searchRef} showClearButton="focus" inputmode="text"></IonSearchbar>
+              <IonSearchbar
+                ref={searchRef}
+                showClearButton="focus"
+                inputmode="text"
+              ></IonSearchbar>
             </IonCol>
             <IonCol class="ion-text-center">
-              <IonButton onClick={getSearch} shape="round" fill="solid" size="small">Enter</IonButton>
+              <IonButton
+                onClick={getSearch}
+                shape="round"
+                fill="solid"
+                size="small"
+              >
+                Enter
+              </IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>
 
         {restaurants}
       </IonContent>
-
     </IonPage>
   );
 };
-
 
 export default HomeTabMainPage;

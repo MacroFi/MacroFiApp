@@ -4,23 +4,20 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import '../css/Tab3.css';
+import "../css/Tab3.css";
 
 const ViewDataMainPage: React.FC = () => {
   return (
     <IonPage>
-      
       <IonHeader>
         <IonToolbar>
           <IonTitle class="ion-text-center">MacroFi</IonTitle>
         </IonToolbar>
       </IonHeader>
-      
-      <IonContent fullscreen>
-      </IonContent>
 
+      <IonContent fullscreen></IonContent>
     </IonPage>
   );
 };

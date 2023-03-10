@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   IonHeader,
   IonContent,
@@ -8,14 +8,12 @@ import {
   IonBackButton,
   IonItem,
   IonPage
-} from '@ionic/react';
+} from "@ionic/react";
 
-import '../css/Tab1.css';
+import "../css/Tab1.css";
 //import NutrientDataDisplay from '../../components/NutrientDataDisplay';
 
-
 const NutritionalDataPage: React.FC = () => {
-
   interface NutritionalData {
     calories: string | number | null | undefined;
     fat: string | number | null | undefined;
@@ -27,19 +25,19 @@ const NutritionalDataPage: React.FC = () => {
     iron: string | number | null | undefined;
     sodium: string | number | null | undefined;
   }
-  
+
   const getLocalData = () => {
-    const local = window.localStorage.getItem("data")
+    const local = window.localStorage.getItem("data");
     if (local == null) {
-      return null
+      return null;
     }
-    return JSON.parse(local)
-  }
-  
+    return JSON.parse(local);
+  };
+
   //https://www.livestrong.com/article/440416-fda-daily-nutritional-requirements/
-  const [NutritionalData] = useState({
+  const [nutritionalData] = useState({
     calories: 2000,
-    fat: 65,    //grams
+    fat: 65, //grams
     protein: 50,
     cholesterol: 0,
     vitamina: 0,
@@ -49,10 +47,8 @@ const NutritionalDataPage: React.FC = () => {
     sodium: 0,
   });
 
-
   return (
     <IonPage>
-
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -64,16 +60,14 @@ const NutritionalDataPage: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-
-
-          <IonHeader> <IonItem>Current Reccomended Daily Macronutrient Intake</IonItem> </IonHeader>
-          <IonItem>Daily Caloric Reccomendation: </IonItem>
-          <IonItem>Daily Calcium Reccomendation: </IonItem>
-          <IonItem>Daily Caloric Reccomendation: </IonItem>
-          <IonItem>Daily Caloric Reccomendation: </IonItem>
-
+        <IonHeader>
+          <IonItem>Current Reccomended Daily Macronutrient Intake</IonItem>{" "}
+        </IonHeader>
+        <IonItem>Daily Caloric Reccomendation: </IonItem>
+        <IonItem>Daily Calcium Reccomendation: </IonItem>
+        <IonItem>Daily Caloric Reccomendation: </IonItem>
+        <IonItem>Daily Caloric Reccomendation: </IonItem>
       </IonContent>
-
     </IonPage>
   );
 };
