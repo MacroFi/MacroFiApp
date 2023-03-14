@@ -7,34 +7,24 @@ import {
   IonButtons,
   IonBackButton,
   IonItem,
-  IonPage
+  IonPage,
+  IonButton
 } from "@ionic/react";
 
 import "../css/Tab1.css";
 //import NutrientDataDisplay from '../../components/NutrientDataDisplay';
 
 const NutritionalDataPage: React.FC = () => {
-  
-  interface PersonalData {
-    uuid: number;
-    height: string | number | null | undefined;
-    weight: string | number | null | undefined;
-    age: string | number | null | undefined;
-    sex: string | number | null | undefined;
-    goal: string | null;
-    food_preferences: Array<string>;
-    dietary_restrictions: Array<string>;
-  }
   interface NutritionalData {
     calories: string | number | null | undefined;
     fat: string | number | null | undefined;
     protein: string | number | null | undefined;
-    cholesterol: string | number | null | undefined;
-    vitamina: string | number | null | undefined;
-    vitaminc: string | number | null | undefined;
-    calcium: string | number | null | undefined;
-    iron: string | number | null | undefined;
-    sodium: string | number | null | undefined;
+    carbs: string | number | null | undefined;
+    //vitamina: string | number | null | undefined;
+    //vitaminc: string | number | null | undefined;
+    //calcium: string | number | null | undefined;
+    //iron: string | number | null | undefined;
+    //sodium: string | number | null | undefined;
   }
 
   
@@ -47,49 +37,44 @@ const NutritionalDataPage: React.FC = () => {
     return JSON.parse(local);
   };
 
-  const [personalData, setPersonalData] = useState<PersonalData>(
-    getLocalData() || {
-      uuid: 1234,
-      height: null,
-      weight: null,
-      age: null,
-      sex: null,
-      goal: null,
-      food_preferences: [],
-      dietary_restrictions: [],
+  const [userCal, setUserCal] = useState<any>();
+  //https://www.livestrong.com/article/440416-fda-daily-nutritional-requirements/
+  const [nutritionData, setNutritionData] = useState<NutritionalData>(
+    {
+      calories: 0,
+      fat: 0,
+      protein: 0,
+      carbs: 0
     }
   );
 
 
   const collectData = async () => {
-    const data = {
-      uuid: 1234,
-      height: 0,
-      weight: 0,
-      age: 0,
-      sex: 0,
-      goal: 0,
-      food_preferences: 0,
-      dietary_restrictions: 0,
-    };
   
-  console.log("DATA", data);
-  const url = new URL(`http://127.0.0.1:5000/v1/user/${data.uuid}`);
+    const url = new URL(`http://127.0.0.1:5000/v1/user/1234/calorie/need`);
+        const response = await fetch(url)
+        const uData = await response.json();
+    console.log("cals", uData)
+    setUserCal(uData);
+
+    if (response.status === 200) {
+      console.log("GOT PERSONAL DATA SUCCESSFULLY");
+    } else if (response.status === 400) {
+      console.log("FAILED TO UPDATE PERSONAL DATA");
+    };
+
+    const url2 = new URL(`http://127.0.0.1:5000/v1/user/1234/macros`);
+        const response2 = await fetch(url2)
+        const uData2 = await response2.json();
+    console.log("macros", uData2)
+    setNutritionData(uData2)
+
+    if (response.status === 200) {
+      console.log("GOT PERSONAL DATA SUCCESSFULLY");
+    } else if (response.status === 400) {
+      console.log("FAILED TO UPDATE PERSONAL DATA");
+    };
   };
-
-
-  //https://www.livestrong.com/article/440416-fda-daily-nutritional-requirements/
-  const [nutritionalData] = useState({
-    calories: 2000,
-    fat: 65, //grams
-    protein: 50,
-    cholesterol: 0,
-    vitamina: 0,
-    vitaminc: 0,
-    calcium: 0,
-    iron: 0,
-    sodium: 0,
-  });
 
   return (
     <IonPage>
@@ -105,12 +90,18 @@ const NutritionalDataPage: React.FC = () => {
 
       <IonContent>
         <IonHeader>
-          <IonItem>Current Reccomended Daily Macronutrient Intake</IonItem>{" "}
+          <IonItem>Current Recommended Daily Macronutrient Intake</IonItem>{" "}
         </IonHeader>
-        <IonItem>Caloric Reccomendation: </IonItem>
-        <IonItem>Calcium Reccomendation: </IonItem>
-        <IonItem>Caloric Reccomendation: </IonItem>
-        <IonItem>Caloric Reccomendation: </IonItem>
+        <>             
+          <IonButton onClick={collectData}>Get Daily Recommendations</IonButton>
+        </>
+        <IonItem>Caloric Recommended: {userCal}</IonItem>
+        <IonItem>Fat Recommended: </IonItem>
+        <IonItem>Protein Recommended: </IonItem>
+        <IonItem>Cholesterol Recommended: </IonItem>
+        <IonItem>Cholesterol Recommended: </IonItem>
+        <IonItem>Cholesterol Recommended: </IonItem>
+
       </IonContent>
     </IonPage>
   );
