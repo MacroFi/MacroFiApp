@@ -32,6 +32,10 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 
+/* MacroFi CSS Theme */
+import "./pages/css/App.css";
+
+
 /* Nav Components */
 import HomeTabMainPage from "./pages/HomeTab/HomeTabMainPage";
 import PersonalDataMainPage from "./pages/PersonalDataTab/PersonalDataTabMainPage";

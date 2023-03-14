@@ -14,9 +14,8 @@ import {
 } from "@ionic/react";
 
 import { useRef, useState } from "react";
-
 import RestaurantCard from "../../components/RestaurantCard";
-import "../css/Tab2.css";
+
 
 const HomeTabMainPage: React.FC = () => {
   const searchRef = useRef<HTMLIonSearchbarElement>(null);

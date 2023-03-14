@@ -8,8 +8,6 @@ import {
   IonContent,
 } from "@ionic/react";
 
-import "../css/Tab1.css";
-
 const PersonalDataMainPage: React.FC = () => {
   return (
     <IonPage>

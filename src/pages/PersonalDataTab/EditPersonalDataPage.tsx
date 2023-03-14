@@ -9,7 +9,6 @@ import {
   IonPage
 } from "@ionic/react";
 
-import "../css/changedata.css";
 import PersonalDataInput from "../../components/PersonalDataInput";
 
 const EditPersonalDataPage: React.FC = () => {
