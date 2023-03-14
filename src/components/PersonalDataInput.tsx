@@ -56,7 +56,7 @@ const PersonalDataInput: React.FC = () => {
     }
     return JSON.parse(local);
   };
-  
+
   const [personalData, setPersonalData] = useState<PersonalData>(
     getLocalData() || {
       uuid: 1234,
@@ -127,7 +127,7 @@ const PersonalDataInput: React.FC = () => {
 
   return (
     <React.Fragment>
-      <IonGrid class="ion-padding-vertical">
+      <IonGrid>
         <IonRow>
           <IonCol>
             <IonItem>
@@ -213,59 +213,62 @@ const PersonalDataInput: React.FC = () => {
             </IonItem>
           </IonCol>
         </IonRow>
+
+        <IonRow>
+          <IonCol>
+            <IonItem lines="full">
+              <IonIcon icon={fastFoodOutline} slot="start"></IonIcon>
+              <IonLabel>Food Prefrences</IonLabel>
+            </IonItem>
+
+            <IonItem>
+              <IonSelect
+                placeholder="Select food preferences"
+                multiple={true}
+                interfaceOptions={foodPrefAlertOptions}
+                ref={foodPreferencesRef}
+                value={personalData.food_preferences}
+              >
+                <IonSelectOption value="american">American</IonSelectOption>
+                <IonSelectOption value="mexican">Mexican</IonSelectOption>
+                <IonSelectOption value="chinese">Chinese</IonSelectOption>
+                <IonSelectOption value="indian">Indian</IonSelectOption>
+                <IonSelectOption value="thai">Thai</IonSelectOption>
+              </IonSelect>
+            </IonItem>
+          </IonCol>
+        </IonRow>
+
+        <IonRow>
+          <IonCol>
+            <IonItem lines="full">
+              <IonIcon icon={alertCircleOutline} slot="start"></IonIcon>
+              <IonLabel>Dietary Restrictions</IonLabel>
+            </IonItem>
+
+            <IonItem>
+              <IonSelect
+                placeholder="Select dietary restrictions"
+                multiple={true}
+                interfaceOptions={dietRestrAlertOptions}
+                ref={dietRestrictionsRef}
+                value={personalData.dietary_restrictions}
+              >
+                <IonSelectOption value="vegetarian">Vegetarian</IonSelectOption>
+                <IonSelectOption value="vegan">Vegan</IonSelectOption>
+                <IonSelectOption value="keto">Keto</IonSelectOption>
+                <IonSelectOption value="no_gluten">NO Gluten</IonSelectOption>
+                <IonSelectOption value="no_nuts">NO Nuts</IonSelectOption>
+                <IonSelectOption value="no_fish_and_shellfish">
+                  NO Fish or Shellfish
+                </IonSelectOption>
+                <IonSelectOption value="no_eggs">NO Eggs</IonSelectOption>
+                <IonSelectOption value="no_soy">NO Soy</IonSelectOption>
+              </IonSelect>
+            </IonItem>
+          </IonCol>
+        </IonRow>
       </IonGrid>
-
-      <IonGrid>
-        <IonItem lines="full">
-          <IonIcon icon={fastFoodOutline} slot="start"></IonIcon>
-          <IonLabel>Food Prefrences</IonLabel>
-        </IonItem>
-
-        <IonItem>
-          <IonSelect
-            placeholder="Select food preferences"
-            multiple={true}
-            interfaceOptions={foodPrefAlertOptions}
-            ref={foodPreferencesRef}
-            value={personalData.food_preferences}
-          >
-            <IonSelectOption value="american">American</IonSelectOption>
-            <IonSelectOption value="mexican">Mexican</IonSelectOption>
-            <IonSelectOption value="chinese">Chinese</IonSelectOption>
-            <IonSelectOption value="indian">Indian</IonSelectOption>
-            <IonSelectOption value="thai">Thai</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-      </IonGrid>
-
-      <IonGrid>
-        <IonItem lines="full">
-          <IonIcon icon={alertCircleOutline} slot="start"></IonIcon>
-          <IonLabel>Dietary Restrictions</IonLabel>
-        </IonItem>
-
-        <IonItem>
-          <IonSelect
-            placeholder="Select dietary restrictions"
-            multiple={true}
-            interfaceOptions={dietRestrAlertOptions}
-            ref={dietRestrictionsRef}
-            value={personalData.dietary_restrictions}
-          >
-            <IonSelectOption value="vegetarian">Vegetarian</IonSelectOption>
-            <IonSelectOption value="vegan">Vegan</IonSelectOption>
-            <IonSelectOption value="keto">Keto</IonSelectOption>
-            <IonSelectOption value="no_gluten">NO Gluten</IonSelectOption>
-            <IonSelectOption value="no_nuts">NO Nuts</IonSelectOption>
-            <IonSelectOption value="no_fish_and_shellfish">
-              NO Fish or Shellfish
-            </IonSelectOption>
-            <IonSelectOption value="no_eggs">NO Eggs</IonSelectOption>
-            <IonSelectOption value="no_soy">NO Soy</IonSelectOption>
-          </IonSelect>
-        </IonItem>
-      </IonGrid>
-
       <IonGrid>
         <IonRow>
           <IonCol className="ion-text-center">

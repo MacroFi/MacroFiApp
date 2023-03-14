@@ -19,7 +19,7 @@ const EditPersonalDataPage: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton text=""></IonBackButton>
           </IonButtons>
-          <IonTitle>Personal Data</IonTitle>
+          <IonTitle class="ion-text-center">Personal Data</IonTitle>
         </IonToolbar>
       </IonHeader>
 

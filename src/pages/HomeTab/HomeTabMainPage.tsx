@@ -10,12 +10,11 @@ import {
   IonButton,
   IonGrid,
   IonItem,
-  IonLabel
+  IonLabel,
 } from "@ionic/react";
 
 import { useRef, useState } from "react";
 import RestaurantCard from "../../components/RestaurantCard";
-
 
 const HomeTabMainPage: React.FC = () => {
   const searchRef = useRef<HTMLIonSearchbarElement>(null);
@@ -72,14 +71,14 @@ const HomeTabMainPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>MacroFi</IonTitle>
+          <IonTitle className="ion-text-center">MacroFi</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
         <IonGrid>
           <IonRow>
-            <IonCol class="ion-text-center">
+            <IonCol className="ion-text-center">
               <IonItem
                 routerLink="/app/HomeTab/MealEntry"
                 routerDirection="forward"
@@ -97,13 +96,8 @@ const HomeTabMainPage: React.FC = () => {
                 inputmode="text"
               ></IonSearchbar>
             </IonCol>
-            <IonCol class="ion-text-center">
-              <IonButton
-                onClick={getSearch}
-                shape="round"
-                fill="solid"
-                size="small"
-              >
+            <IonCol className="ion-text-center">
+              <IonButton onClick={getSearch} fill="solid" size="small">
                 Enter
               </IonButton>
             </IonCol>
