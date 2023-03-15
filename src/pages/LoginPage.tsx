@@ -29,14 +29,15 @@ import React from "react";
 
 import { useState, useRef } from "react";
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<{
+  userIDSetter: (username: string | number | null | undefined) => void;
+}> = (props) => {
+  const [present] = useIonToast();
   const [segment, setSegment] = useState<"login" | "signup">("login");
 
   const username = useRef<HTMLIonInputElement>(null);
   const password = useRef<HTMLIonInputElement>(null);
   const confirmPassword = useRef<HTMLIonInputElement>(null);
-
-  const [present] = useIonToast();
 
   const segmentHandler = (event: CustomEvent) => {
     setSegment(event.detail.value);
@@ -58,19 +59,34 @@ const LoginPage: React.FC = () => {
   const checkLogin = async () => {
     const uuid = simpleHashFunction(username.current?.value);
     const url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}`);
-    const response = await fetch(url);
 
-    if (response.status === 400) {
-      present({
-        message: "Invalid Account",
-        duration: 2500,
-        position: "top",
-        icon: alertOutline,
-        color: "danger",
-      });
-      return;
-    } else {
-      window.location.href = "/app";
+    try {
+      const response = await fetch(url);
+      if (response.status === 400) {
+        present({
+          message: "Invalid Account",
+          duration: 2500,
+          position: "top",
+          icon: alertOutline,
+          color: "danger",
+        });
+        return;
+      } else {
+        // Used so other pages can have access to uuid
+        props.userIDSetter(uuid);
+        window.location.href = "/app";
+      }
+    } catch (e) {
+      console.log(e);
+      if (e instanceof TypeError) {
+        present({
+          message: "COULDN'T CONNECT TO BACKEND",
+          duration: 2500,
+          position: "top",
+          icon: alertOutline,
+          color: "danger",
+        });
+      }
     }
   };
 
@@ -99,32 +115,36 @@ const LoginPage: React.FC = () => {
     };
 
     const url = new URL(`http://127.0.0.1:5000/v1/user/${data.uuid}`);
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
 
-    if (response.status === 200) {
-      present({
-        message: "Account created successfully!",
-        duration: 2500,
-        position: "top",
-        icon: checkmarkOutline,
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
-      setSegment("login");
-      console.log("Created User:", data.uuid);
-    }
-    if (response.status === 400) {
-      present({
-        message: "COULDN'T CONNECT TO BACKEND",
-        duration: 2500,
-        position: "top",
-        icon: alertOutline,
-        color: "danger",
-      });
+      if (response.status === 200) {
+        present({
+          message: "Account created successfully!",
+          duration: 2500,
+          position: "top",
+          icon: checkmarkOutline,
+        });
+        setSegment("login");
+        console.log("Created User:", data.uuid);
+      }
+    } catch (e) {
+      console.log(e);
+      if (e instanceof TypeError) {
+        present({
+          message: "COULDN'T CONNECT TO BACKEND",
+          duration: 2500,
+          position: "top",
+          icon: alertOutline,
+          color: "danger",
+        });
+      }
     }
   };
 
