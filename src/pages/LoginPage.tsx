@@ -29,9 +29,8 @@ import React from "react";
 
 import { useState, useRef } from "react";
 
-const LoginPage: React.FC<{
-  userIDSetter: (username: string | number | null | undefined) => void;
-}> = (props) => {
+const LoginPage: React.FC = () => {
+  
   const [present] = useIonToast();
   const [segment, setSegment] = useState<"login" | "signup">("login");
 
@@ -73,8 +72,8 @@ const LoginPage: React.FC<{
         return;
       } else {
         // Used so other pages can have access to uuid
-        props.userIDSetter(uuid);
-        window.location.href = "/app";
+        window.localStorage.setItem("uuid", uuid.toString());
+        window.location.href = "/app/PeronalDataTab";
       }
     } catch (e) {
       console.log(e);

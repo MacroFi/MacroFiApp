@@ -6,9 +6,13 @@ import {
   IonItem,
   IonLabel,
   IonContent,
+  IonButton,
 } from "@ionic/react";
 
 const PersonalDataMainPage: React.FC = () => {
+  const test = () => {
+    console.log(window.localStorage.getItem("uuid"))
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -35,6 +39,7 @@ const PersonalDataMainPage: React.FC = () => {
         >
           <IonLabel>Nutritional Data</IonLabel>
         </IonItem>
+        <IonButton onClick={test}>test</IonButton>
       </IonContent>
     </IonPage>
   );

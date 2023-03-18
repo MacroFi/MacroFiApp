@@ -28,9 +28,7 @@ import {
 
 import React, { useRef, useState } from "react";
 
-const EditPersonalDataPage: React.FC<{
-  uuid: string | number | null | undefined;
-}> = (props) => {
+const EditPersonalDataPage: React.FC = () => {
 
   const foodPrefAlertOptions = {
     header: "Food Preferences",

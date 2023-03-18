@@ -48,7 +48,7 @@ import LoginPage from "./pages/LoginPage";
 setupIonicReact();
 
 const App: React.FC = () => {
-  window.localStorage.clear();
+  // window.localStorage.clear();
   return (
     <IonApp>
       <IonReactRouter>
