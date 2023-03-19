@@ -17,7 +17,16 @@ import {
   IonToolbar,
 } from "@ionic/react";
 
+import {PieChart} from 'react-minimal-pie-chart';
+
 const ViewDataMainPage: React.FC =  () => {
+    interface NutritionalData {
+    //calories: string | number | null | undefined;
+    fat: string | number | null | undefined;
+    protein: string | number | null | undefined;
+    carbs: string | number | null | undefined;
+    sugar: string | number | null | undefined;
+  }
   const [HTMLs, setHTML] = useState<JSX.Element[]>([]);
   const [userData, setUserData] = useState<any>();
   const getUserData = async () => {
@@ -49,17 +58,17 @@ const ViewDataMainPage: React.FC =  () => {
           </IonCard>
         </IonCol>
 
-        <IonCol>
           <IonCard  class="ion-text-center">
+            {/*
           <IonCardHeader>
             <IonCardTitle>Calories Needed:</IonCardTitle>
           </IonCardHeader>
-
           <IonCardContent>
             {uData.calorie_need}
           </IonCardContent>
+              */}
+
         </IonCard>
-      </IonCol>
     </IonRow>
     );
     setHTML(userHTML);
@@ -84,6 +93,14 @@ const ViewDataMainPage: React.FC =  () => {
           </IonRow>
         </IonGrid>
         {HTMLs}
+        <PieChart
+          data={[
+            { title: 'Carbs', value: 10, color: '#E38627', label:"carb" },
+            { title: 'Fat', value: 15, color: '#C13C37' },
+            { title: 'Protein', value: 20, color: '#6A2135' },
+            { title: 'Sugar', value: 20, color: '#33adff' }
+          ]}
+        />;
       </IonContent>
     </IonPage>
   );
