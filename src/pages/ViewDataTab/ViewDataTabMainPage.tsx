@@ -21,23 +21,46 @@ const ViewDataMainPage: React.FC =  () => {
   const [HTMLs, setHTML] = useState<JSX.Element[]>([]);
   const [userData, setUserData] = useState<any>();
   const getUserData = async () => {
-    const url = new URL('http://127.0.0.1:5000/v1/user/1234/calorie/need');
-
-    const response = await fetch(url);
+    const uuid = window.localStorage.getItem("uuid")
+    const need_url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/calorie/need`);
+    const response = await fetch(need_url);
     const uData = await response.json();
     setUserData(uData);
 
+    const today_url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/calorie/today`);
+    const today_responce = await fetch(today_url);
+    const tData = await today_responce.json()
+    console.log(tData)
+    
+
+
     const userHTML = [];
     userHTML.push(
-      <IonCard  class="ion-text-center">
-        <IonCardHeader>
-          <IonCardTitle>Calories Consumed:</IonCardTitle>
-        </IonCardHeader>
+      <IonRow key={uuid}>
+        <IonCol>
+          <IonCard  class="ion-text-center">
+            <IonCardHeader>
+              <IonCardTitle>Calories Consumed Today:</IonCardTitle>
+            </IonCardHeader>
 
-        <IonCardContent>
-          {uData.calorie_need}
-        </IonCardContent>
-      </IonCard>
+            <IonCardContent>
+              {tData.calories}
+            </IonCardContent>
+          </IonCard>
+        </IonCol>
+
+        <IonCol>
+          <IonCard  class="ion-text-center">
+          <IonCardHeader>
+            <IonCardTitle>Calories Needed:</IonCardTitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            {uData.calorie_need}
+          </IonCardContent>
+        </IonCard>
+      </IonCol>
+    </IonRow>
     );
     setHTML(userHTML);
 
