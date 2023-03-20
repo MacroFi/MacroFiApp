@@ -48,7 +48,7 @@ const EditPersonalDataPage: React.FC = () => {
   };
 
   interface PersonalData {
-    uuid: number;
+    uuid: string | null;
     height: string | number | null | undefined;
     weight: string | number | null | undefined;
     age: string | number | null | undefined;
@@ -66,9 +66,29 @@ const EditPersonalDataPage: React.FC = () => {
     return JSON.parse(local);
   };
 
+  // const getUserDataFromBackEnd = async () => {
+  //   const uuid = window.localStorage.getItem("uuid");
+  //   const url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}`);
+  //   const response = await fetch(url);
+  //   const json = await response.json();
+  //   console.log(json);
+  //   const data = {
+  //     uuid : json._uuid,
+  //     height: json._height,
+  //     weight: json._weight,
+  //     age: json._age,
+  //     sex: json._sex,
+  //     goal: json._personal_goal,
+  //     food_preferences: json._food_preferences,
+  //     dietary_restrictions: json._dietary_restrictions,
+  //   }
+  //   return data
+    
+  // }
+
   const [personalData, setPersonalData] = useState<PersonalData>(
     getLocalData() || {
-      uuid: 1234,
+      uuid: window.localStorage.getItem("uuid"),
       height: null,
       weight: null,
       age: null,
@@ -91,7 +111,7 @@ const EditPersonalDataPage: React.FC = () => {
 
   const collectData = async () => {
     const data = {
-      uuid: 1234,
+      uuid: window.localStorage.getItem("uuid"),
       height: heightRef.current?.value,
       weight: weightRef.current?.value,
       age: ageRef.current?.value,
@@ -103,7 +123,7 @@ const EditPersonalDataPage: React.FC = () => {
 
     setPersonalData(data);
 
-    console.log("DATA", data);
+    console.log(data);
     const url = new URL(`http://127.0.0.1:5000/v1/user/${data.uuid}`);
     const response = await fetch(url, {
       method: "POST",
@@ -114,7 +134,6 @@ const EditPersonalDataPage: React.FC = () => {
     });
 
     if (response.status === 200) {
-      console.log("UPDATED PERSONAL DATA SUCCESSFULLY");
       present({
         message: "Updated Successful",
         duration: 1500,
@@ -122,7 +141,6 @@ const EditPersonalDataPage: React.FC = () => {
         icon: checkmarkOutline,
       });
     } else if (response.status === 400) {
-      console.log("FAILED TO UPDATE PERSONAL DATA");
       present({
         message: "ERROR 400: UPDATE FAILED",
         duration: 1500,
