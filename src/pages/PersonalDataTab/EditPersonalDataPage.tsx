@@ -249,10 +249,14 @@ const EditPersonalDataPage: React.FC = () => {
                   value={personalData.food_preferences}
                 >
                   <IonSelectOption value="american">American</IonSelectOption>
-                  <IonSelectOption value="mexican">Mexican</IonSelectOption>
                   <IonSelectOption value="chinese">Chinese</IonSelectOption>
-                  <IonSelectOption value="indian">Indian</IonSelectOption>
                   <IonSelectOption value="thai">Thai</IonSelectOption>
+                  <IonSelectOption value="indian">Indian</IonSelectOption>
+                  <IonSelectOption value="japanese">Japanese</IonSelectOption>
+                  <IonSelectOption value="korean">Korean</IonSelectOption>
+                  <IonSelectOption value="mexican">Mexican</IonSelectOption>
+                  <IonSelectOption value="italian">Italian</IonSelectOption>
+                  <IonSelectOption value="fast_food">Fast Food</IonSelectOption>
                 </IonSelect>
               </IonItem>
             </IonCol>
