@@ -40,7 +40,6 @@ const MealEnter: React.FC = () => {
     const list = [...inputList];
     list[index].foodItem = value as string;
     setInputList(list);
-    console.log(name, value, event.target);
   };
 
   const saveMealBackEnd = async () => {
