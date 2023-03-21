@@ -50,6 +50,10 @@ img {
   object-fit: cover;
 }
 
+.RestaurantCard {
+  padding: 4px
+}
+
 
 
 /* (Steven) I prefer without margin */
