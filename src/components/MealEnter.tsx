@@ -11,7 +11,7 @@ import {
   useIonToast,
 } from "@ionic/react";
 
-import { closeCircle, checkmarkOutline, alertOutline } from "ionicons/icons";
+import { closeCircle, checkmarkOutline } from "ionicons/icons";
 import { IonInputCustomEvent } from "@ionic/core";
 
 const MealEnter: React.FC = () => {
@@ -33,6 +33,7 @@ const MealEnter: React.FC = () => {
     event: IonInputCustomEvent<InputChangeEventDetail>
   ) => {
     const { name, value } = event.target;
+    console.log(name, value)
     const list = [...inputList];
     list[index].foodItem = value as string;
     setInputList(list);
@@ -43,7 +44,7 @@ const MealEnter: React.FC = () => {
       return;
     }
     const meal = {
-      food_items: new Array(),
+      food_items: new Array<string>(),
     };
 
     for (let i = 0; i < inputList.length; i++) {

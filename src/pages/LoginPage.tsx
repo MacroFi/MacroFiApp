@@ -143,7 +143,7 @@ const LoginPage: React.FC = () => {
           },
           body: JSON.stringify({location: "irvine"}),
         });
-        console.log("Set location to irvine")
+        console.log("Set location to irvine", r)
 
       }
     } catch (e) {

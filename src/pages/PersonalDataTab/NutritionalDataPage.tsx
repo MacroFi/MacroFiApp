@@ -16,25 +16,12 @@ import {
 
 const NutritionalDataPage: React.FC = () => {
   interface NutritionalData {
-    //calories: string | number | null | undefined;
     fat: string | number | null | undefined;
     protein: string | number | null | undefined;
     carbs: string | number | null | undefined;
     sugar: string | number | null | undefined;
-    //vitamina: string | number | null | undefined;
-    //vitaminc: string | number | null | undefined;
-    //calcium: string | number | null | undefined;
-    //iron: string | number | null | undefined;
-    //sodium: string | number | null | undefined;
   }
 
-  const getLocalData = () => {
-    const local = window.localStorage.getItem("data");
-    if (local == null) {
-      return null;
-    }
-    return JSON.parse(local);
-  };
 
   const [userCal, setUserCal] = useState<any>(0);
 

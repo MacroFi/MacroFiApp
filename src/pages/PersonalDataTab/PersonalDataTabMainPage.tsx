@@ -6,7 +6,6 @@ import {
   IonItem,
   IonLabel,
   IonContent,
-  IonButton,
 } from "@ionic/react";
 
 const PersonalDataMainPage: React.FC = () => {
