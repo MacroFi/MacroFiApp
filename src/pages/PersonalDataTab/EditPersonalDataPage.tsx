@@ -319,7 +319,7 @@ const EditPersonalDataPage: React.FC = () => {
             </IonCol>
           </IonRow>
 
-          <p>{JSON.stringify(personalData)}</p>
+          {/* <p>{JSON.stringify(personalData)}</p> */}
         </IonGrid>
       </IonContent>
     </IonPage>

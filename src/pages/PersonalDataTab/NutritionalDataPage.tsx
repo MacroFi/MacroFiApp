@@ -9,6 +9,9 @@ import {
   IonItem,
   IonPage,
   IonButton,
+  IonGrid,
+  IonRow,
+  IonCol,
 } from "@ionic/react";
 
 const NutritionalDataPage: React.FC = () => {
@@ -33,22 +36,23 @@ const NutritionalDataPage: React.FC = () => {
     return JSON.parse(local);
   };
 
-  const [userCal, setUserCal] = useState<any>();
+  const [userCal, setUserCal] = useState<any>(0);
 
   //https://www.livestrong.com/article/440416-fda-daily-nutritional-requirements/
   const [nutritionData, setNutritionData] = useState<NutritionalData>({
     fat: 55,
     protein: 70,
     carbs: 60,
-    sugar: 20
+    sugar: 20,
   });
 
   const collectData = async () => {
-    const uuid = window.localStorage.getItem("uuid")
+    const uuid = window.localStorage.getItem("uuid");
     const url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/calorie/need`);
     const response = await fetch(url);
     const uData = await response.json();
-    //console.log("cals", uData.calorie_need);
+
+    console.log(uData);
     setUserCal(parseInt(uData.calorie_need));
 
     if (response.status === 200) {
@@ -59,14 +63,15 @@ const NutritionalDataPage: React.FC = () => {
     const url2 = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/macros`);
     const response2 = await fetch(url2);
     const uData2 = await response2.json();
-    //console.log("macros", uData2.macronutrients);
-    const temp = uData2.macronutrients // An array of FPC
+
+    console.log(uData2);
+    const temp = uData2.macronutrients; // An array of FPC
     const data = {
       carbs: parseInt(temp[0]),
       protein: parseInt(temp[1]),
       fat: parseInt(temp[2]),
-      sugar: parseInt(temp[3])
-    }
+      sugar: parseInt(temp[3]),
+    };
     setNutritionData(data);
 
     if (response.status === 200) {
@@ -83,23 +88,35 @@ const NutritionalDataPage: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton text=""></IonBackButton>
           </IonButtons>
-
           <IonTitle class="ion-text-center">Nutritional Data</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
-        <IonHeader>
-          <IonItem>Current Recommended Daily Macronutrient Intake</IonItem>{" "}
-        </IonHeader>
-        <>
-          <IonButton onClick={collectData}>Get Daily Recommendations</IonButton>
-        </>
-        <IonItem>Caloric Recommended: {userCal} cal</IonItem>
-        <IonItem>Carbohydrates Recommended: {nutritionData.fat}g</IonItem>
-        <IonItem>Protein Recommended: {nutritionData.protein}g</IonItem>
-        <IonItem>Fat Recommended: {nutritionData.carbs}g</IonItem>
-        <IonItem>Sugar Recommended: {nutritionData.sugar}g</IonItem>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonItem>Current Recommended Daily Macronutrient Intake</IonItem>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol>
+              <IonItem>Caloric Recommended: {userCal}cal</IonItem>
+              <IonItem>Carbohydrates Recommended: {nutritionData.fat}g</IonItem>
+              <IonItem>Protein Recommended: {nutritionData.protein}g</IonItem>
+              <IonItem>Fat Recommended: {nutritionData.carbs}g</IonItem>
+              <IonItem>Sugar Recommended: {nutritionData.sugar}g</IonItem>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
+            <IonCol className="ion-text-center">
+              <IonButton onClick={collectData}>Get Daily Recommendations</IonButton>
+            </IonCol>
+          </IonRow>
+          
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
