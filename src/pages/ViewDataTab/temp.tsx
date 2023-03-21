@@ -211,6 +211,48 @@ const temp: React.FC = () => {
   //   setHTML(userHTML);
   // };
 
+  // return (
+  //   <IonPage>
+  //     <IonHeader>
+  //       <IonToolbar>
+  //         <IonTitle class="ion-text-center">MacroFi</IonTitle>
+  //       </IonToolbar>
+  //     </IonHeader>
+
+  //     <IonContent fullscreen>
+  //       <IonGrid>
+  //         <IonRow>
+  //           <IonCol class="ion-text-center">
+  //             {/* <IonButton onClick={getUserData}>
+  //               Get Personalized Macros
+  //             </IonButton> */}
+  //           </IonCol>
+  //         </IonRow>
+
+  //         {/* {HTMLs} */}
+
+  //         <IonRow>
+  //           <IonCol>
+  //             <IonCard>
+  //               <Bar data={bar_initial_state} options={{ responsive: true }} />
+  //               {/*<ReactFC {...chartConfigs} />*/}
+  //             </IonCard>
+  //           </IonCol>
+  //         </IonRow>
+  //       </IonGrid>
+
+  //       {/* <PieChart
+  //         data={[
+  //           { title: "Carbs", value: 10, color: "#E38627", label: "carb" },
+  //           { title: "Fat", value: 15, color: "#C13C37" },
+  //           { title: "Protein", value: 20, color: "#6A2135" },
+  //           { title: "Sugar", value: 20, color: "#33adff" },
+  //         ]}
+  //       /> */}
+  //     </IonContent>
+  //   </IonPage>
+  // );
+
   return (
 <></>
   );
