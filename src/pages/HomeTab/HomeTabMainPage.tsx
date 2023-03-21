@@ -36,11 +36,12 @@ const HomeTabMainPage: React.FC = () => {
     const response = await fetch(url);
     const nearby = await response.json();
 
+    console.log(nearby)
     var elements = [];
-    for (var i = 0; i < nearby.businesses.length; i += 2) {
+    for (var i = 0; i < nearby.businesses.length; i += 1) {
       var first = nearby.businesses[i];
-      var second =
-        i + 1 < nearby.businesses.length ? nearby.businesses[i + 1] : null;
+      // var second =
+      //   i + 1 < nearby.businesses.length ? nearby.businesses[i + 1] : null;
 
       elements.push(
         <IonGrid fixed={true} key={i}>
@@ -51,18 +52,20 @@ const HomeTabMainPage: React.FC = () => {
                 name={first.name}
                 rating={first.rating}
                 address={first.address}
+                categories={first.categories}
               />
             </IonCol>
-            <IonCol className="RestaurantCard">
+            {/* <IonCol className="RestaurantCard">
               {second ? (
                 <RestaurantCard
                   img_url={second.image_url}
                   name={second.name}
                   rating={second.rating}
                   address={second.address}
+                  categories={first.categories}
                 />
               ) : null}
-            </IonCol>
+            </IonCol> */}
           </IonRow>
         </IonGrid>
       );
