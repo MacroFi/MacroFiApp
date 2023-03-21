@@ -28,7 +28,7 @@ import {
   Legend
 } from "chart.js"; 
 
-var cloneDeep = require('lodash.clonedeep');
+// var cloneDeep = require('lodash.clonedeep');
 
 let bar_initial_state = {
   labels: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
@@ -201,10 +201,10 @@ const ViewDataMainPage: React.FC =  () => {
           }
           setTableData(tableDataCopy)
 
-          const barDataCopy = cloneDeep(barChartData);
-          barDataCopy.datasets[0].data = tableDataCopy[0]
-          barDataCopy.datasets[1].data = tableDataCopy[1]
-          setData(barDataCopy)
+          // const barDataCopy = cloneDeep(barChartData);
+          // barDataCopy.datasets[0].data = tableDataCopy[0]
+          // barDataCopy.datasets[1].data = tableDataCopy[1]
+          // setData(barDataCopy)
         }
 
       }
