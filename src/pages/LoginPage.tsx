@@ -123,6 +123,7 @@ const LoginPage: React.FC = () => {
         },
         body: JSON.stringify(data),
       });
+
       if (response.status === 200) {
         present({
           message: "Account created successfully!",
@@ -132,6 +133,18 @@ const LoginPage: React.FC = () => {
         });
         setSegment("login");
         console.log("Created User:", data.uuid);
+
+
+        const location = new URL(`http://127.0.0.1:5000/v1/user/${data.uuid}/location`);
+        const r = await fetch(location, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({location: "irvine"}),
+        });
+        console.log("Set location to irvine")
+
       }
     } catch (e) {
       console.log(e);
