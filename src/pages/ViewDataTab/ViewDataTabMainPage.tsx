@@ -16,7 +16,6 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
-  IonList,
   IonCardContent,
   IonItemGroup,
   IonItemDivider,
@@ -51,7 +50,7 @@ const ViewDataMainPage: React.FC = () => {
         totalCal += foodItem._calories;
       }
       IonMealCards.push(
-        <IonCard>
+        <IonCard key={timeEaten}>
           <IonCardHeader>
             <IonCardTitle>Total Calories: {totalCal}</IonCardTitle>
             <IonCardSubtitle>Date: {timeEaten}</IonCardSubtitle>
