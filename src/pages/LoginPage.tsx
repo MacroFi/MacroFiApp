@@ -71,6 +71,7 @@ const LoginPage: React.FC = () => {
         });
         return;
       } else {
+        window.localStorage.clear()
         // Used so other pages can have access to uuid
         window.localStorage.setItem("uuid", uuid.toString());
         window.location.href = "/app/PeronalDataTab";
