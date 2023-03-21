@@ -17,24 +17,21 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import {PieChart} from 'react-minimal-pie-chart';
-import { Line, Bar, Pie , Doughnut} from 'react-chartjs-2';
-import {CategoryScale} from 'chart.js'; 
-import Chart from 'chart.js/auto'; 
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from "chart.js"; 
 
-Chart.register(CategoryScale);
+var cloneDeep = require('lodash.clonedeep');
 
-const ViewDataMainPage: React.FC =  () => {
-    interface NutritionalData {
-    //calories: string | number | null | undefined;
-    fat: string | number | null | undefined;
-    protein: string | number | null | undefined;
-    carbs: string | number | null | undefined;
-    sugar: string | number | null | undefined;
-  }
-  const [HTMLs, setHTML] = useState<JSX.Element[]>([]);
-  const [userData, setUserData] = useState<any>();
-  const [barChartData, setData] = useState( {
-    labels: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+let bar_initial_state = {
+  labels: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
         label: 'Calories',
@@ -55,7 +52,32 @@ const ViewDataMainPage: React.FC =  () => {
         data: [0, 0, 0, 0, 0, 0, 0]
       }
     ]
-    });
+}
+
+const ViewDataMainPage: React.FC =  () => {
+    interface NutritionalData {
+    //calories: string | number | null | undefined;
+    fat: string | number | null | undefined;
+    protein: string | number | null | undefined;
+    carbs: string | number | null | undefined;
+    sugar: string | number | null | undefined;
+  }
+  const [HTMLs, setHTML] = useState<JSX.Element[]>([]);
+  const [userData, setUserData] = useState<any>();
+
+  const [barChartData, setData] = useState(bar_initial_state);
+
+  const [tableData, setTableData] = useState([
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+  ]);
+
+  ChartJS.register(CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend);
   
   const addDays = (date: Date, days: number) => {
     var result = new Date(date);
@@ -99,6 +121,10 @@ const ViewDataMainPage: React.FC =  () => {
     return [min_date, max_date]
   }
 
+  const resetGraph = () => {
+    setData(bar_initial_state)
+  }
+
   const getUserData = async () => {
     const uuid = window.localStorage.getItem("uuid")
 
@@ -109,54 +135,81 @@ const ViewDataMainPage: React.FC =  () => {
 
     const today_url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/calorie/today`);
     const today_responce = await fetch(today_url);
-    const tData = await today_responce.json()
+    const tData = await today_responce.json();
 
     const meals_url = new URL(`http://127.0.0.1:5000/v1/user/${uuid}/meals`);
     const meals_responce = await fetch(meals_url);
-    const mData = await meals_responce.json()
+    const mData = await meals_responce.json();
 
     const d_url = new URL(`http://127.0.0.1:5000/v1/today`);
     const d_responce = await fetch(d_url);
-    const dData = await d_responce.json()
+    const dData = await d_responce.json();
 
-    var d1 = new Date(dData);
-
-    var minMax = minMaxDays(d1)
+    var d1 = new Date();
+    var d1 = addDays(d1, 1);
+    var minMax = minMaxDays(d1);
     
+    setData(bar_initial_state);
 
     for (var i = 0; i < mData.meals.length; i++) {
 
-      var meal_date = new Date(mData.meals[i]._time_eaten)
-
+      var meal_date = new Date(mData.meals[i]._time_eaten);
       if (minMax[0].getTime() <= meal_date.getTime() &&  meal_date.getTime() <= minMax[1].getTime()) {
-
         for (var j = 0; j < mData.meals[i]._food_items.length; j++) {
-          if (meal_date.getDay() == 0) {
-            barChartData.datasets[0].data[6] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[6] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[0] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[0] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[1] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[1] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[2] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[2] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[3] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[3] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[4] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[4] += mData.meals[i]._food_items[j]._nutrient_data.protein
-          } else if (meal_date.getDay() == 1) {
-            barChartData.datasets[0].data[5] += mData.meals[i]._food_items[j]._calories
-            barChartData.datasets[1].data[5] += mData.meals[i]._food_items[j]._nutrient_data.protein
+          let tableDataCopy = [...tableData];
+
+          if (meal_date.getDay() === 0) {
+            const prevCal = tableDataCopy[0][6]
+            const PrevProt = tableDataCopy[1][6]
+            tableDataCopy[0][6] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][6] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][0]
+            const PrevProt = tableDataCopy[1][0]
+            tableDataCopy[0][0] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][0] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][1]
+            const PrevProt = tableDataCopy[1][1]
+            tableDataCopy[0][1] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][1] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][2]
+            const PrevProt = tableDataCopy[1][2]
+            tableDataCopy[0][2] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][2] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][3]
+            const PrevProt = tableDataCopy[1][3]
+            tableDataCopy[0][3] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][3] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][4]
+            const PrevProt = tableDataCopy[1][4]
+            tableDataCopy[0][4] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][4] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
+
+          } else if (meal_date.getDay() === 1) {
+            const prevCal = tableDataCopy[0][5]
+            const PrevProt = tableDataCopy[1][5]
+            tableDataCopy[0][5] = prevCal + mData.meals[i]._food_items[j]._calories
+            tableDataCopy[1][5] = PrevProt + mData.meals[i]._food_items[j]._nutrient_data.protein;
           }
+          setTableData(tableDataCopy)
+
+          const barDataCopy = cloneDeep(barChartData);
+          barDataCopy.datasets[0].data = tableDataCopy[0]
+          barDataCopy.datasets[1].data = tableDataCopy[1]
+          setData(barDataCopy)
         }
 
       }
     }
+    
 
 
     const userHTML = [];
@@ -208,11 +261,11 @@ const ViewDataMainPage: React.FC =  () => {
             </IonCol>
           </IonRow>
           {HTMLs}
-          <IonRow>
+          <IonRow >
             <IonCol>
               <IonCard>
                 <Bar data={barChartData}
-                  options={{ maintainAspectRatio: true}}/>
+                  options={{ responsive: true}}/>
                 {/*<ReactFC {...chartConfigs} />*/}
               </IonCard>
             </IonCol>
