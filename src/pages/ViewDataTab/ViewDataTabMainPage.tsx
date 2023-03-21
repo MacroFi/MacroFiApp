@@ -18,6 +18,8 @@ import {
   IonCardSubtitle,
   IonList,
   IonCardContent,
+  IonItemGroup,
+  IonItemDivider,
 } from "@ionic/react";
 
 const ViewDataMainPage: React.FC = () => {
@@ -55,7 +57,13 @@ const ViewDataMainPage: React.FC = () => {
             <IonCardSubtitle>Date: {timeEaten}</IonCardSubtitle>
           </IonCardHeader>
           <IonCardContent>
-            <IonList>{names}</IonList>
+            <IonItemGroup>
+              <IonItemDivider>
+                Meal
+              </IonItemDivider>
+              {names}
+            </IonItemGroup>
+            {/* <IonList>{names}</IonList> */}
           </IonCardContent>
         </IonCard>
       );
