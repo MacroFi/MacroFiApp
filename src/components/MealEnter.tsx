@@ -12,14 +12,10 @@ import {
 } from "@ionic/react";
 
 import { closeCircle, checkmarkOutline, alertOutline } from "ionicons/icons";
-
 import { IonInputCustomEvent } from "@ionic/core";
 
 const MealEnter: React.FC = () => {
-  // const [nutrientCards, setNutrientCards] = useState<JSX.Element[]>([]);
-  // const [nutrientData, setNutrientData] = useState<any>();
   const [inputList, setInputList] = useState([{ foodItem: "" }]);
-
   const [present] = useIonToast();
 
   const newSub = () => {
@@ -75,36 +71,6 @@ const MealEnter: React.FC = () => {
     }
   };
 
-  // const getNutrientData = async () => {
-  //   const url = new URL("http://127.0.0.1:5000/v1/meal_nutrients");
-
-  //   const meal = inputList.map((input) => input.foodItem);
-  //   url.searchParams.append("meal", meal.toString());
-
-  //   const response = await fetch(url);
-  //   const mealNutrients = await response.json();
-
-  //   setNutrientData(mealNutrients);
-
-  //   const nutrientCardsHTML = [];
-  //   for (const foodItem in mealNutrients) {
-  //     const nutrients = mealNutrients[foodItem];
-  //     nutrientCardsHTML.push(
-  //       <NutrientCard
-  //         key={foodItem}
-  //         foodItem={foodItem}
-  //         calories={nutrients.calories}
-  //         carbs={nutrients.carbohydrates}
-  //         fat={nutrients.fat}
-  //         protein={nutrients.protein}
-  //         sugar={nutrients.sugar}
-  //       ></NutrientCard>
-  //     );
-  //   }
-
-  //   setNutrientCards(nutrientCardsHTML);
-  // };
-
   return (
     <React.Fragment>
       <IonGrid class="ion-padding-vertical">
@@ -140,15 +106,9 @@ const MealEnter: React.FC = () => {
             <IonButton color="primary" onClick={saveMealBackEnd}>
               Save Meal
             </IonButton>
-            {/* <IonButton color="primary" onClick={getNutrientData}>
-              Get Nutrition Data
-            </IonButton> */}
           </IonCol>
         </IonRow>
       </IonGrid>
-
-      {/* {nutrientCards} */}
-      {/* <p>{JSON.stringify(nutrientData)}</p> */}
     </React.Fragment>
   );
 };

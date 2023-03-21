@@ -11,14 +11,18 @@ import {
   IonGrid,
   IonItem,
   IonLabel,
+  IonLoading,
 } from "@ionic/react";
 
 import { useRef, useState } from "react";
 import RestaurantCard from "../../components/RestaurantCard";
+import NutrientCard from "../../components/NutrientCard";
 
 const HomeTabMainPage: React.FC = () => {
   const searchRef = useRef<HTMLIonSearchbarElement>(null);
   const [restaurants, setRestaurants] = useState<JSX.Element[]>([]);
+  const [nutrientCards, setNutrientCards] = useState<JSX.Element[]>([]);
+  const [showLoading, setShowLoading] = useState(false);
 
   const getSearch = async () => {
     const searchKey = searchRef.current!.value!;
@@ -41,7 +45,7 @@ const HomeTabMainPage: React.FC = () => {
       elements.push(
         <IonGrid fixed={true} key={i}>
           <IonRow>
-            <IonCol>
+            <IonCol className="RestaurantCard">
               <RestaurantCard
                 img_url={first.image_url}
                 name={first.name}
@@ -49,7 +53,7 @@ const HomeTabMainPage: React.FC = () => {
                 address={first.address}
               />
             </IonCol>
-            <IonCol>
+            <IonCol className="RestaurantCard">
               {second ? (
                 <RestaurantCard
                   img_url={second.image_url}
@@ -64,7 +68,46 @@ const HomeTabMainPage: React.FC = () => {
       );
     }
 
+    setNutrientCards([]);
     setRestaurants(elements);
+  };
+
+  const getMealReccomendations = async () => {
+    console.log("recoomn");
+
+    const uuid = window.localStorage.getItem("uuid");
+    const url = new URL(
+      `http://127.0.0.1:5000/v1/user/${uuid}/recommendations`
+    );
+    const response = await fetch(url);
+    const recommendations = await response.json();
+
+    console.log(recommendations);
+    const nutrientCardsHTML = [];
+    for (const foodItem in recommendations) {
+      const foodData = recommendations[foodItem];
+      nutrientCardsHTML.push(
+        <NutrientCard
+          key={foodItem}
+          foodItem={foodData._food_name}
+          calories={foodData._nutrient_data.calories}
+          carbs={foodData._nutrient_data.carbohydrates}
+          fat={foodData._nutrient_data.fat}
+          protein={foodData._nutrient_data.protein}
+          sugar={foodData._nutrient_data.sugar}
+        ></NutrientCard>
+      );
+    }
+    setRestaurants([]);
+    setNutrientCards(nutrientCardsHTML);
+    setShowLoading(false);
+  };
+
+  const getMealReccomendationsWrapper = async () => {
+    setShowLoading(true);
+    setTimeout(() => {
+      getMealReccomendations();
+    }, 1);
   };
 
   return (
@@ -89,6 +132,20 @@ const HomeTabMainPage: React.FC = () => {
           </IonRow>
 
           <IonRow>
+            <IonCol className="ion-text-center">
+              <IonItem button={true} onClick={getMealReccomendationsWrapper}>
+                <IonLabel class="ion-text-center">
+                  Get Meal Reccomendations
+                </IonLabel>
+              </IonItem>
+              <IonLoading
+                isOpen={showLoading}
+                message={"Calculating reccomendations..."}
+              ></IonLoading>
+            </IonCol>
+          </IonRow>
+
+          <IonRow>
             <IonCol size="12">
               <IonSearchbar
                 ref={searchRef}
@@ -105,6 +162,7 @@ const HomeTabMainPage: React.FC = () => {
         </IonGrid>
 
         {restaurants}
+        {nutrientCards}
       </IonContent>
     </IonPage>
   );

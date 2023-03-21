@@ -21,7 +21,7 @@ const NutrientCard: React.FC<{
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle>{props.foodItem} Nutritional Facts</IonCardTitle>
+        <IonCardTitle>{props.foodItem}</IonCardTitle>
         <IonCardSubtitle>Calories: {props.calories}</IonCardSubtitle>
       </IonCardHeader>
       <IonCardContent>
