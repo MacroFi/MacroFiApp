@@ -58,8 +58,6 @@ const ViewDataMainPage: React.FC = () => {
   const [mealCards, setMealCards] = useState<JSX.Element[]>([]);
   
   const [barChartData, setData] = useState(bar_initial_state);
-  // const [userCalories, setUserCalories] = useState([]);
-
   const addDays = (date: Date, days: number) => {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
@@ -76,11 +74,10 @@ const ViewDataMainPage: React.FC = () => {
     var date_str = adate.toDateString();
 
     let date = date_str.split(" ");
+    var min_date
+    var max_date
 
-    var min_date;
-    var max_date;
-
-    if (date[0] === "Sun") {
+    if (date[0] == "Sun") {
       min_date = new Date(adate);
       max_date = new Date(addDays(adate, 6));
     } else if(date[0] === "Mon") {
