@@ -58,8 +58,6 @@ const ViewDataMainPage: React.FC = () => {
   const [mealCards, setMealCards] = useState<JSX.Element[]>([]);
   
   const [barChartData, setData] = useState(bar_initial_state);
-  const [userCalories, setUserCalories] = useState([]);
-
   const addDays = (date: Date, days: number) => {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
@@ -76,28 +74,30 @@ const ViewDataMainPage: React.FC = () => {
     var date_str = adate.toDateString();
 
     let date = date_str.split(" ");
+    var min_date
+    var max_date
 
     if (date[0] == "Sun") {
-      var min_date = new Date(adate);
-      var max_date = new Date(addDays(adate, 6));
-    } else if(date[0] == "Mon") {
-      var min_date = new Date(subDays(adate, 1));
-      var max_date = new Date(addDays(adate, 5));
-    } else if (date[0] == "Tues") {
-      var min_date = new Date(subDays(adate, 2));
-      var max_date = new Date(addDays(adate, 4));
-    } else if (date[0] == "Wed") {
-      var min_date = new Date(subDays(adate, 3));
-      var max_date = new Date(addDays(adate, 3));
-    } else if (date[0] == "Thurs") {
-      var min_date = new Date(subDays(adate, 4));
-      var max_date = new Date(addDays(adate, 2));
-    } else if (date[0] == "Fri") {
-      var min_date = new Date(subDays(adate, 5));
-      var max_date = new Date(addDays(adate, 1));
+      min_date = new Date(adate);
+      max_date = new Date(addDays(adate, 6));
+    } else if(date[0] === "Mon") {
+      min_date = new Date(subDays(adate, 1));
+      max_date = new Date(addDays(adate, 5));
+    } else if (date[0] === "Tues") {
+      min_date = new Date(subDays(adate, 2));
+      max_date = new Date(addDays(adate, 4));
+    } else if (date[0] === "Wed") {
+      min_date = new Date(subDays(adate, 3));
+      max_date = new Date(addDays(adate, 3));
+    } else if (date[0] === "Thurs") {
+      min_date = new Date(subDays(adate, 4));
+      max_date = new Date(addDays(adate, 2));
+    } else if (date[0] === "Fri") {
+      min_date = new Date(subDays(adate, 5));
+      max_date = new Date(addDays(adate, 1));
     } else {
-      var min_date = new Date(subDays(adate, 6));
-      var max_date = new Date(adate);
+      min_date = new Date(subDays(adate, 6));
+      max_date = new Date(adate);
     }
     return [min_date, max_date];
   };
