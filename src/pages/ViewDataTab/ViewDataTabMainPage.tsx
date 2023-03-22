@@ -77,7 +77,7 @@ const ViewDataMainPage: React.FC = () => {
     var min_date
     var max_date
 
-    if (date[0] == "Sun") {
+    if (date[0] === "Sun") {
       min_date = new Date(adate);
       max_date = new Date(addDays(adate, 6));
     } else if(date[0] === "Mon") {
